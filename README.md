@@ -76,5 +76,5 @@ e.g: Object { name: "Nicholas", lastname: "Richardson", initials: "NR", email: "
     </tr>
 </table>
 
-
+<p>&nbsp;</p>
 Copyright &copy; 2018 Simao Nziaka
