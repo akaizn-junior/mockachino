@@ -26,18 +26,19 @@
         //save mocka.mock() in a variable to persist the data
 
         //show mocked data in the console
-        console.log(mocka);
+        console.log(mocka.person);
 
         //fp - fake eperson
         let fpElem = document.getElementById('fake-person');
         let fpDetails = document.createElement('ul');
 
         fpDetails.innerHTML = `
-            <li>Title: ${mocka.person.title}</li>
-            <li>Name: ${mocka.person.name}</li>
-            <li>Lastname: ${mocka.person.lastname}</li>
-            <li>Initials: ${mocka.person.initials}</li>
-            <li>Email: ${mocka.person.email}</li>
+            <li>Title: <i>${mocka.person.title}</i></li>
+            <li>Name: <i>${mocka.person.name}</i></li>
+            <li>Middlename: <i>${mocka.person.middlename}</i></li>
+            <li>Lastname: <i>${mocka.person.lastname}</i></li>
+            <li>Initials: <i>${mocka.person.initials}</i></li>
+            <li>Email: <i>${mocka.person.email}</i></li>
         `;
 
         fpElem.appendChild(fpDetails);

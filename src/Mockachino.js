@@ -157,14 +157,12 @@ export default class Mockachino {
                 'Mrs.',
                 'Ms.'
             ],
-
             suffixTitle: [
                 'Sr.',
                 'Jr.',
                 '3rd',
                 'The 3rd'
             ],
-
             academic: [
                 'Dr.',
                 'Prof.'
@@ -180,13 +178,24 @@ export default class Mockachino {
         //get an index for email providers
         let emailProvIndex = Mockachino.getRandomInt(emailProviders.length);
 
-        return {
+        let person = {
             name: names[nameTypeIndex][nameArrayIndex],
             lastname: surnames[surnameIndex],
             initials: `${names[nameTypeIndex][nameArrayIndex].charAt(0)}${surnames[surnameIndex].charAt(0)}`,
             email: `${names[nameTypeIndex][nameArrayIndex].toLocaleLowerCase()}.${surnames[surnameIndex].toLocaleLowerCase()}@${emailProviders[emailProvIndex]}`,
             title: titles.prefixTitle[Mockachino.getRandomInt(titles.prefixTitle.length)]
         };
+
+        //generate a middlename 50% of the time
+        if(nameArrayIndex > Math.floor(names.length / 2)) {
+            let midNmIndex = Mockachino.getRandomInt(names.length);
+            let middlename = names[nameTypeIndex][midNmIndex];
+            let middleInitial = middlename.charAt(0);
+            person.middlename = middlename;
+            person.middleInitial = `${middleInitial}.`;
+        }
+
+        return person;
     }
 
     /**
@@ -194,13 +203,11 @@ export default class Mockachino {
      */
     getAddress() {
         //list of countries supported by Mockachino
-        const countries = [
-            {
-                countryCode: 1,
-                abbrev: 'US',
-                name: 'United States'
-            }
-        ];
+        const countries = [{
+            countryCode: 1,
+            abbrev: 'US',
+            name: 'United States'
+        }];
 
         //grab a state in the array of states
         let stateIndex = Mockachino.getRandomInt(usStatesData.length);

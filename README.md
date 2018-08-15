@@ -18,7 +18,7 @@ Mochachino?!
     * & more
 
     Based on US data; other countries to come.
-    
+
 
 ### How to use
 Script Tag
@@ -30,7 +30,7 @@ Script Tag
     //show mocked data in the console
     console.log(mocka.person);
     /*
-    e.g: Object { name: "Nicholas", lastname: "Richardson", initials: "NR", email: "nicholas.richardson@outlook.com", 
+    e.g: Object { name: "Nicholas", lastname: "Richardson", initials: "NR", email: "nicholas.richardson@outlook.com",
     title: "Mr.", middlename: "Liam", middleInitial: "L." }
     */
 </script>
