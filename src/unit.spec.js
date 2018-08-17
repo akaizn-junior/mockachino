@@ -7,7 +7,7 @@ import { expect } from 'chai';
 
 //grab Mockachino
 import Mockachino from './Mockachino';
-//instatiate - mocks at instatiation
+//instatiate
 let mocka = new Mockachino();
 
 describe('Mockachino', () => {
@@ -55,14 +55,14 @@ describe('Method: mock', () => {
     }
 });
 
-describe('Method: getZipcode', () => {
-    it('should return a string representing a 5 digit number for default locale, US', () => {
-        expect(mocka.getZipcode()).to.have.length(5);
+describe('Method: getUsZipcode', () => {
+    it('should return a string representing a 5 digit number', () => {
+        expect(mocka.getUsZipcode()).to.have.length(5);
     });
 });
 
-describe('Method: getPhoneNumber', () => {
-    it('should return a string representing a 10 digit number for default locale, US', () => {
-        expect(mocka.getPhoneNumber().number).to.have.length(10);
+describe('Method: getUsPhoneNumber', () => {
+    it('should return a string representing a 10 digit number', () => {
+        expect(mocka.getUsPhoneNumber().number).to.have.length(10);
     });
 });

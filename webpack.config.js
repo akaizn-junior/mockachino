@@ -15,11 +15,6 @@ module.exports = {
         path: path.join(__dirname, 'dist', process.env.TARGET, config.version)
     },
     plugins: [],
-    devServer: {
-        contentBase: __dirname,
-        port: 7000,
-        open: true
-    },
     module: {
         //set the rules of transpiling
         rules: [
