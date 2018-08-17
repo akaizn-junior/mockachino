@@ -113,7 +113,7 @@ class Mockachino {
      */
     getZipcode() {
         let zipcode = '';
-        if(this.locale !== undefined) {
+        if(this.locale) {
             switch (this.locale.abbrev) {
             case 'US':
                 //A US zip code is a 5 digits number consisting of digits from 0-9
@@ -161,7 +161,7 @@ class Mockachino {
      */
     getPhoneNumber() {
         let number = {};
-        if(this.locale !== undefined) {
+        if(this.locale) {
             switch (this.locale.abbrev) {
             case 'US':
                 number = this.getUsPhoneNumber();
@@ -203,7 +203,7 @@ class Mockachino {
         };
 
         //if the person sex is defined
-        if(this.person.sex !== undefined) {
+        if(this.person.sex) {
             switch (this.person.sex) {
             case 'man':
                 nameIndex = Mockachino.getRandomInt(this.locale.menNames.length);
