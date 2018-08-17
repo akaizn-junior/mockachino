@@ -2,29 +2,59 @@
 // Mockachino - Generate mock data for your apps. Take a sip and relax
 // *********************************************************************
 
-import usStatesData from './data/locale/us/us_states.json';
-import usMenNames from './data/locale/us/us_names_men.json';
-import usWomenNames from './data/locale/us/us_names_women.json';
-import usSurnames from './data/locale/us/us_surnames.json';
-import usMajorCities from './data/locale/us/us_major_cities.json';
-import usIndustries from './data/locale/us/us_job_indutries.json';
-import lorem from './data/text/lorem.json';
+const usStatesData = require('./data/locale/us/us_states.json');
+const usMenNames = require('./data/locale/us/us_names_men.json');
+const usWomenNames = require('./data/locale/us/us_names_women.json');
+const usSurnames = require('./data/locale/us/us_surnames.json');
+const usMajorCities = require('./data/locale/us/us_major_cities.json');
+const usIndustries = require('./data/locale/us/us_job_indutries.json');
+const lorem = require('./data/text/lorem.json');
 
-export default class Mockachino {
+class Mockachino {
     /**
      * Mock all sorts of things
      * @constructor
+     * @param {object} opts Options for the mocker
      */
+    constructor(opts = {}) {
+        //set the person object
+        //so that new properties can later be set or left undefined
+        this.person = {};
+        //grab options
+        //set the sex of the person
+        this.person.sex = opts.person ? opts.person.sex : undefined;
+        //set the locale - default us
+        this.defineLocaleVars(opts.locale);
+    }
+
     mock() {
         return {
             person: this.getPerson(),
             address: this.getAddress(),
-            phoneNumber: this.getPhoneNumber('US').number,
+            phoneNumber: this.getPhoneNumber().number,
             job: this.getJob(),
             text: Mockachino.getLorem().text,
             sentence: Mockachino.getLorem().sentence,
             paragraph: Mockachino.getLorem().paragraph
         };
+    }
+
+    defineLocaleVars(locale = 'us') {
+        switch (locale) {
+        case 'us':
+            this.locale = {
+                states: usStatesData,
+                menNames: usMenNames,
+                womenNames: usWomenNames,
+                surnames: usSurnames,
+                majorCities: usMajorCities,
+                industries: usIndustries,
+                code: 1,
+                abbrev: 'US',
+                name: 'United States'
+            };
+            break;
+        }
     }
 
     // **********************
@@ -79,13 +109,19 @@ export default class Mockachino {
     }
 
     /**
-     * Mocks US zip codes
-     * A US zip code is a 5 digits number consisting of digits from 0-9
+     * Mocks zip codes from anywhere depending on the locale
      */
-    getUsZipcode() {
+    getZipcode() {
         let zipcode = '';
-        for(let i = 0; i < 5; i++) {
-            zipcode += Mockachino.getRandomInt(9);
+        if(this.locale !== undefined) {
+            switch (this.locale.abbrev) {
+            case 'US':
+                //A US zip code is a 5 digits number consisting of digits from 0-9
+                for(let i = 0; i < 5; i++) {
+                    zipcode += Mockachino.getRandomInt(9);
+                }
+                break;
+            }
         }
         return zipcode;
     }
@@ -99,8 +135,7 @@ export default class Mockachino {
         //NPA-NXX-XXXX
         //NPA - Area code
         //NXX-XXXX - 7 digit subscriber number
-        //N - code for the local central office
-        //N goes from 2 to 9
+        //N - code for the local central office, goes from 2 to 9
 
         //generate the area code
         //generate N by generate a random int from 2 to 9
@@ -111,7 +146,7 @@ export default class Mockachino {
         for(let i = 0; i < 6; i++) subNumber += i;
 
         let number = {
-            country: 'US',
+            country: 'us',
             countryCode: '+1',
             cityCode: areaCode,
             subNumber,
@@ -122,27 +157,37 @@ export default class Mockachino {
     }
 
     /**
-     * Mocks a phone number based on a country
-     * @param {string} country The country in which the phone number should be from
+     * Mocks a phone number from the locale
      */
-    getPhoneNumber(country) {
-        let numberObj = {};
-        switch (country) {
-        case 'US':
-            numberObj = this.getUsPhoneNumber();
-            break;
+    getPhoneNumber() {
+        let number = {};
+        if(this.locale !== undefined) {
+            switch (this.locale.abbrev) {
+            case 'US':
+                number = this.getUsPhoneNumber();
+                break;
+            }
         }
-        return numberObj;
+        return number;
     }
 
     /**
      * Mocks a person
      */
     getPerson() {
-        //define initial data
-        const names = [usMenNames, usWomenNames];
-        const surnames = usSurnames;
+        //the names array
+        let names = [];
+        //the index of a random name in the names array
+        let nameIndex = 0;
+        let middleNameIndex = 0;
+        //the person titles
+        let preTitleIndex;
+        let suffixTitleIndex;
 
+        //grab common surnames
+        const surnames = this.locale.surnames;
+
+        //set common email providers
         const emailProviders = [
             'gmail.com',
             'hotmail.com',
@@ -150,50 +195,67 @@ export default class Mockachino {
             'live.com'
         ];
 
-        //All sorts of titles
+        //set all sorts of titles
         const titles = {
-            prefixTitle: [
-                'Mr.',
-                'Mrs.',
-                'Ms.'
-            ],
-            suffixTitle: [
-                'Sr.',
-                'Jr.',
-                '3rd',
-                'The 3rd'
-            ],
-            academic: [
-                'Dr.',
-                'Prof.'
-            ]
+            prefixTitle: ['Mr.', 'Mrs.', 'Ms.'],
+            suffixTitle: ['Sr.', 'Jr.', '3rd', 'The 3rd'],
+            academic: ['Dr.', 'Prof.']
         };
 
-        //grab either men or women names
-        let nameTypeIndex = Mockachino.getRandomInt(names.length);
+        //if the person sex is defined
+        if(this.person.sex !== undefined) {
+            switch (this.person.sex) {
+            case 'man':
+                nameIndex = Mockachino.getRandomInt(this.locale.menNames.length);
+                middleNameIndex = Mockachino.getRandomInt(this.locale.menNames.length);
+                names = this.locale.menNames;
+                preTitleIndex = 0;
+                suffixTitleIndex = Mockachino.getRandomInt(titles.suffixTitle.length);
+                break;
+            case 'woman':
+                nameIndex = Mockachino.getRandomInt(this.locale.womenNames.length);
+                middleNameIndex = Mockachino.getRandomInt(this.locale.womenNames.length);
+                names = this.locale.womenNames;
+                preTitleIndex = Mockachino.getRandomInt(titles.prefixTitle.length, 1);
+                break;
+            }
+        } else {
+            //create a composite names array
+            let allNames = [this.locale.menNames, this.locale.womenNames];
+            //grab either men or women names 0 or 1 respectively
+            let nameTypeIndex = Mockachino.getRandomInt(allNames.length);
+            //the names array randomly selected
+            names = allNames[nameTypeIndex];
+            //get an index for the array of names which will be the name and middlename
+            nameIndex = Mockachino.getRandomInt(names.length);
+            middleNameIndex = Mockachino.getRandomInt(names.length);
+            //define the person titles
+            if(nameTypeIndex === 0) {
+                preTitleIndex = 0;
+                suffixTitleIndex = Mockachino.getRandomInt(titles.suffixTitle.length);
+            } else {
+                preTitleIndex = Mockachino.getRandomInt(titles.prefixTitle.length, 1);
+            }
+        }
+
         //get an index for surnames
         let surnameIndex = Mockachino.getRandomInt(surnames.length);
-        //get an index for an array of names
-        let nameArrayIndex = Mockachino.getRandomInt(names[nameTypeIndex].length);
         //get an index for email providers
         let emailProvIndex = Mockachino.getRandomInt(emailProviders.length);
 
         let person = {
-            name: names[nameTypeIndex][nameArrayIndex],
+            name: names[nameIndex],
+            middlename: names[middleNameIndex],
+            middleInitial: `${names[middleNameIndex].charAt(0)}.`,
             lastname: surnames[surnameIndex],
-            initials: `${names[nameTypeIndex][nameArrayIndex].charAt(0)}${surnames[surnameIndex].charAt(0)}`,
-            email: `${names[nameTypeIndex][nameArrayIndex].toLocaleLowerCase()}.${surnames[surnameIndex].toLocaleLowerCase()}@${emailProviders[emailProvIndex]}`,
-            title: titles.prefixTitle[Mockachino.getRandomInt(titles.prefixTitle.length)]
+            initials: `${names[nameIndex].charAt(0)}.${surnames[surnameIndex].charAt(0)}`,
+            email: `${names[nameIndex].toLocaleLowerCase()}.${surnames[surnameIndex].toLocaleLowerCase()}@${emailProviders[emailProvIndex]}`,
+            academicTitle: titles.academic[Mockachino.getRandomInt(titles.academic.length)]
         };
 
-        //generate a middlename 50% of the time
-        if(nameArrayIndex > Math.floor(names.length / 2)) {
-            let midNmIndex = Mockachino.getRandomInt(names.length);
-            let middlename = names[nameTypeIndex][midNmIndex];
-            let middleInitial = middlename.charAt(0);
-            person.middlename = middlename;
-            person.middleInitial = `${middleInitial}.`;
-        }
+        //if prefix and suffix titles are set add them to the person's object
+        if(preTitleIndex !== undefined) person.title = titles.prefixTitle[preTitleIndex];
+        if(suffixTitleIndex !== undefined) person.suffixTitle = titles.suffixTitle[suffixTitleIndex];
 
         return person;
     }
@@ -202,31 +264,23 @@ export default class Mockachino {
      * Mocks an address
      */
     getAddress() {
-        //list of countries supported by Mockachino
-        const countries = [{
-            countryCode: 1,
-            abbrev: 'US',
-            name: 'United States'
-        }];
-
         //grab a state in the array of states
-        let stateIndex = Mockachino.getRandomInt(usStatesData.length);
+        let stateIndex = Mockachino.getRandomInt(this.locale.states.length);
         //get the actual state
-        let stateData = usStatesData[stateIndex];
-        //define an index for a country
-        let countryIndex = 0;
+        let stateData = this.locale.states[stateIndex];
 
         //usMajorCities are defines as string of city, state
         //so we need to split the string first and than return the city
-        let cityIndex = Mockachino.getRandomInt(usMajorCities.length);
-        let city = usMajorCities[cityIndex].split(',')[0];
+        let cityIndex = Mockachino.getRandomInt(this.locale.majorCities.length);
+        let city = this.locale.majorCities[cityIndex].split(',')[0];
 
         return {
             city,
             state: stateData.name,
             stateAbbrev: stateData.abbreviation,
-            zipCode: this.getUsZipcode(),
-            country: countries[countryIndex].abbrev
+            zipCode: this.getZipcode(),
+            countryAbbrev: this.locale.abbrev,
+            country: this.locale.name
         };
     }
 
@@ -237,7 +291,7 @@ export default class Mockachino {
         //grab an industry
         //industry is an array of industry fields
         //curently the first field of the array is the industry name
-        let industry = usIndustries[Mockachino.getRandomInt(usIndustries.length)];
+        let industry = this.locale.industries[Mockachino.getRandomInt(this.locale.industries.length)];
         //get the industry name
         let industryName = industry[0];
         //get industry fields
@@ -260,7 +314,7 @@ export default class Mockachino {
 
         return {
             name: industryField,
-            city: this.getAddress().city,
+            city: this.locale.majorCities[Mockachino.getRandomInt(this.locale.majorCities.length)].split(',')[0],
             industry: industryName,
             hours: jobHours[Mockachino.getRandomInt(jobHours.length)],
             type: jobType[Mockachino.getRandomInt(jobType.length)]
@@ -268,4 +322,5 @@ export default class Mockachino {
     }
 }
 
+//export as a commonJS module
 module.exports = Mockachino;
