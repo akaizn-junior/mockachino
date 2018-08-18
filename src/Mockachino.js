@@ -23,8 +23,10 @@ class Mockachino {
         //grab options
         //set the sex of the person
         this.person.sex = opts.person ? opts.person.sex : undefined;
+        //test locales
+        this.LOCALES = ['us'];
         //set the locale - default us
-        this.defineLocaleVars(opts.locale);
+        this.LOCALES.includes(opts.locale) ? this.defineLocaleVars(opts.locale) : this.defineLocaleVars();
     }
 
     mock() {
