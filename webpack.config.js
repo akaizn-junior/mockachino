@@ -12,7 +12,7 @@ module.exports = {
         filename: `${process.env.NAME}.min.js`,
         library: process.env.NAME.charAt(0).toUpperCase() + process.env.NAME.slice(1),
         libraryTarget: process.env.TARGET,
-        path: path.join(__dirname, 'dist', process.env.TARGET, config.version)
+        path: path.join(__dirname, 'dist', process.env.TARGET)
     },
     plugins: [],
     devServer: {
