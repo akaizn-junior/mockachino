@@ -1,0 +1,31 @@
+language: node_js
+node_js:
+    - "lts/*"
+
+cache:
+    directories:
+        - "node_modules"
+
+stages:
+    - test
+    - build
+
+jobs:
+    include:
+        - stage: test
+          name: "Unit and coverage tests"
+          script:
+            - npm install
+            - npm run test
+        - stage: build
+          name: "Make with webpack"
+          script:
+            - npm install
+            - npm run make:js
+
+notifications:
+  email:
+    - sdnziaka@gmail.com
+
+
+

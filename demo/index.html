@@ -18,15 +18,18 @@
         </div>
     </main>
 
-    <script src="../dist/umd/0.2.0/mockachino.min.js"></script>
+    <script src="../dist/umd/0.2.2/mockachino.min.js"></script>
     <script>
-        let mocka = new Mockachino().mock();
+        let mocka = new Mockachino({
+            locale: 'us',
+            person: {
+                sex: 'woman'
+            }
+        }).mock();
 
         //mocka.mock() generates new data everytime is called
         //save mocka.mock() in a variable to persist the data
-
-        //show mocked data in the console
-        console.log(mocka.person);
+        console.log(mocka);
 
         //fp - fake eperson
         let fpElem = document.getElementById('fake-person');
@@ -41,6 +44,10 @@
             <li>Email: <i>${mocka.person.email}</i></li>
         `;
 
+        let rText = document.createElement('div');
+        rText.innerHTML = `${mocka.text(4)}`;
+
+        fpElem.appendChild(rText);
         fpElem.appendChild(fpDetails);
     </script>
 </body>

@@ -20,6 +20,55 @@ describe('Mockachino', () => {
     });
 });
 
+describe('Instatiate with options', () => {
+    it('should instatiate with a defined locale', () => {
+        expect(new Mockachino({locale: 'us'}))
+            .to.be.an('object').that.ownProperty('locale')
+            .that.ownProperty('abbrev').equals('US');
+    });
+
+    it('should instatiate with an undefined locale', () => {
+        expect(new Mockachino({locale: 'und'}))
+            .to.be.an('object').that.ownProperty('locale')
+            .that.ownProperty('abbrev').equals('US');
+    });
+
+    it('should instatiate with a person defined as a man', () => {
+        expect(new Mockachino({person: { sex: 'man' }}))
+            .to.be.an('object').that.ownProperty('person');
+
+        expect(new Mockachino({person: { sex: 'man' }}).mock().person)
+            .to.ownProperty('title').equals('Mr.');
+
+        expect(new Mockachino({person: { sex: 'man' }}).mock().person)
+            .to.have.ownProperty('suffixTitle');
+    });
+
+    it('should instatiate with a person defined as a woman', () => {
+        expect(new Mockachino({person: { sex: 'woman' }}))
+            .to.be.an('object').that.ownProperty('person');
+
+        expect(new Mockachino({person: { sex: 'woman' }}).mock().person)
+            .to.not.ownProperty('suffixTitle');
+    });
+
+    it('should instatiate with an undefined person', () => {
+        expect(new Mockachino({person: { sex: 'und' }}))
+            .to.be.an('object').that.ownProperty('person');
+
+        expect(new Mockachino({person: { sex: 'und' }}).mock().person)
+            .to.ownProperty('name');
+    });
+
+    it('should instatiate with all options properly set', () => {
+        expect(new Mockachino({
+            locale: 'us',
+            person: { sex: 'woman' }
+        }).mock().person)
+            .to.be.an('object').that.ownProperty('name');
+    });
+});
+
 describe('Method: mock', () => {
     it('should return an object', () => {
         expect(mocka.mock()).to.be.an('object');
@@ -56,13 +105,13 @@ describe('Method: mock', () => {
 });
 
 describe('Method: getZipcode', () => {
-    it('should return a string representing a 5 digit number for default locale, us', () => {
+    it('should return a string representing a 5 digits zipcode', () => {
         expect(mocka.getZipcode()).to.have.length(5);
     });
 });
 
 describe('Method: getPhoneNumber', () => {
-    it('should return a string representing a 10 digit number for default locale, us', () => {
+    it('should return a string representing a 10 digits phone number', () => {
         expect(mocka.getPhoneNumber().number).to.have.length(10);
     });
 });

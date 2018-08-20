@@ -1,6 +1,6 @@
 {
   "name": "mockachino",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Generate mock data for your apps. Take a sip and relax",
   "main": "src/Mockachino.js",
   "author": {
@@ -17,15 +17,18 @@
     "data",
     "seed",
     "mockachino",
-    "faker"
+    "faker",
+    "mocker"
   ],
   "scripts": {
     "test:unit": "mocha 'src/unit.spec.js' --require babel-core/register",
     "test:cov": "nyc npm run test:unit",
-    "build": "npm run test:cov && webpack --progress",
+    "test": "npm run lint && npm run test:cov",
+    "lint": "eslint .",
+    "make:js": "webpack --progress",
     "watch": "webpack --watch",
-    "serveBase": "webpack-dev-server",
-    "make:js": "webpack"
+    "build": "npm run lint && npm run test:cov && npm run make:js",
+    "serveBase": "webpack-dev-server"
   },
   "license": "MIT",
   "devDependencies": {
