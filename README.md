@@ -68,4 +68,6 @@ e.g: Object { name: "Elizabeth", middlename: "Claire", middleInitial: "C.", last
 | Locale | Defines the locale the data should be based on. Defaults to 'us', more locales to come |
 | Person | Mock a person, define the person sex, by setting person.sex to 'man' or 'woman' |
 
+[![Build Status](https://travis-ci.org/akaizn-junior/mockachino.svg?branch=master)](https://travis-ci.org/akaizn-junior/mockachino)
+
 Copyright &copy; 2018 Simao Nziaka
