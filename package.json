@@ -1,6 +1,6 @@
 {
   "name": "mockachino",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Generate mock data for your apps. Take a sip and relax",
   "main": "src/Mockachino.js",
   "author": {
