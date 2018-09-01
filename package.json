@@ -29,7 +29,7 @@
     "watch": "webpack --watch",
     "build": "npm run lint && npm run test:cov && npm run make:js",
     "serveBase": "webpack-dev-server",
-    "docs": "jsdoc src/Mockachino.js -c jsdoc.json --verbose",
+    "docs": "jsdoc src/Mockachino.js -c jsdoc.json --verbose && cp logo.gif docs",
     "serve": "webpack-dev-server -w",
     "pack": "./test_package.sh"
   },
