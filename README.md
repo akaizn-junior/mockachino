@@ -22,6 +22,8 @@ Generate mock data for your apps, take a sip and relax!
 
     Based on US data; other countries to come.
 
+### [Documentation](https://akaizn-junior.github.io/mockachino/)
+
 ## How to use
 
 ### Script tag
