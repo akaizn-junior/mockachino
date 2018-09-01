@@ -1,4 +1,6 @@
 
+![Mockachino logo](./logo.gif)
+
 - Faker
 - Mocker
 - Mocha?
