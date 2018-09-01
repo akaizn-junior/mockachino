@@ -23,13 +23,17 @@
         let mocka = new Mockachino({
             locale: 'us',
             person: {
-                sex: 'woman'
+                sex: 'man',
+                height: 'tall',
+                age: '20s'
             }
         }).mock();
 
         //mocka.mock() generates new data everytime is called
         //save mocka.mock() in a variable to persist the data
-        console.log(mocka);
+        console.log(mocka.person);
+        //mock without options
+        console.log((new Mockachino()).mock().person);
 
         //fp - fake eperson
         let fpElem = document.getElementById('fake-person');

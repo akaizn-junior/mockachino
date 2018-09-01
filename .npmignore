@@ -1,0 +1,19 @@
+#dont need this in the npm package
+node_modules
+cypress
+.nyc_output
+coverage
+dist
+docs
+.babelrc
+.editorconfig
+.travis.yml
+package-lock.json
+webpack.config.js
+.eslintrc
+.env
+.eslintignore
+demo
+jsdoc.json
+src/unit.spec.js
+test_package.sh

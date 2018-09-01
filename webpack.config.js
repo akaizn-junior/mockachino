@@ -16,7 +16,7 @@ module.exports = {
     },
     plugins: [],
     devServer: {
-        contentBase: __dirname,
+        contentBase: path.join(__dirname, ''),
         port: 7000,
         open: true
     },

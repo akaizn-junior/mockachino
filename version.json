@@ -1,9 +1,13 @@
 {
-    "raw": "v0.2.2",
-    "major": 0,
-    "minor": 2,
-    "patch": 2,
-    "codeName": "joia",
-    "branch": "v0.2.x",
-    "full": "0.2.2"
+    "raw": "v0.2.3",
+    "major": "0",
+    "minor": "2",
+    "patch": "3",
+    "codeName": "jewel",
+    "branch": "23.x.5", 
+    "full": "0.2.3",
+    "engines": {
+        "node": "10.2.1",
+        "npm:": "6.4.1"
+    }
 }

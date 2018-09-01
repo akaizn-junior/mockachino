@@ -1,4 +1,45 @@
-// *********************************************************************
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mockachino.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Mockachino.html">Mockachino</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#.getLorem">getLorem</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#.getRandomInt">getRandomInt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#getAddress">getAddress</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#getJob">getJob</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#getPerson">getPerson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#getPhoneNumber">getPhoneNumber</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#getUsPhoneNumber">getUsPhoneNumber</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#getZipcode">getZipcode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Mockachino.html#mock">mock</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Mockachino.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// *********************************************************************
 // Mockachino - Generate mock data for your apps. Take a sip and relax
 // *********************************************************************
 
@@ -95,14 +136,14 @@ class Mockachino {
     _checkPersonHeight() {
         //set the person's height 5.9 - 6.11 = tall; 4.0 - 5.8 = short
         let pHeight = `${Mockachino.getRandomInt(7, 4)}.${Mockachino.getRandomInt(12)}`;
-        if(this.person.height && this.person.height === 'short') {
+        if(this.person.height &amp;&amp; this.person.height === 'short') {
             let tmp = Mockachino.getRandomInt(6, 4);
             if(tmp === 4) {
                 pHeight = `${tmp}.${Mockachino.getRandomInt(12)}`;
             } else if(tmp === 5) {
                 pHeight = `${tmp}.${Mockachino.getRandomInt(9)}`;
             }
-        } else if(this.person.height && this.person.height === 'tall') {
+        } else if(this.person.height &amp;&amp; this.person.height === 'tall') {
             let tmp = Mockachino.getRandomInt(7, 5);
             if(tmp === 5) {
                 pHeight = `${tmp}.${Mockachino.getRandomInt(12, 9)}`;
@@ -145,7 +186,7 @@ class Mockachino {
         let lorems = length => {
             let ret = '';
             //create paragraphs of length number of sentences
-            for(let i = 0; i < length; i++) {
+            for(let i = 0; i &lt; length; i++) {
                 //Select random sentences circularly
                 ret += `${lorem[i % lorem.length]}.\n`;
             }
@@ -169,7 +210,7 @@ class Mockachino {
             switch (this.locale.abbrev) {
             case 'US':
                 //A US zip code is a 5 digits number consisting of digits from 0-9
-                for(let i = 0; i < 5; i++) zipcode += Mockachino.getRandomInt(9);
+                for(let i = 0; i &lt; 5; i++) zipcode += Mockachino.getRandomInt(9);
                 break;
             }
         }
@@ -190,7 +231,7 @@ class Mockachino {
         let areaCode = `${Mockachino.getRandomInt(10, 2)}${Mockachino.getRandomInt(9)}${Mockachino.getRandomInt(9)}`;
         //generate the rest of the 7 digit subscriber number
         let subNumber = `${Mockachino.getRandomInt(10, 2)}`;
-        for(let i = 0; i < 6; i++) subNumber += i;
+        for(let i = 0; i &lt; 6; i++) subNumber += i;
 
         let number = {
             country: 'us',
@@ -251,7 +292,7 @@ class Mockachino {
             academic: ['Dr.', 'Prof.']
         };
 
-        if(this.person.sex === undefined || this.person.sex !== 'man' && this.person.sex !== 'woman') {
+        if(this.person.sex === undefined || this.person.sex !== 'man' &amp;&amp; this.person.sex !== 'woman') {
             //create a composite names array
             let allNames = [this.locale.menNames, this.locale.womenNames];
             //grab either men or women names 0 or 1 respectively
@@ -269,14 +310,14 @@ class Mockachino {
                 preTitleIndex = randI(titles.prefixTitle.length, 1);
                 pSex = 'woman';
             }
-        } else if(this.person.sex && this.person.sex === 'man') {
+        } else if(this.person.sex &amp;&amp; this.person.sex === 'man') {
             nameIndex = randI(this.locale.menNames.length);
             middleNameIndex = randI(this.locale.menNames.length);
             names = this.locale.menNames;
             preTitleIndex = 0;
             suffixTitleIndex = randI(titles.suffixTitle.length);
             pSex = 'man';
-        } else if(this.person.sex && this.person.sex === 'woman') {
+        } else if(this.person.sex &amp;&amp; this.person.sex === 'woman') {
             nameIndex = randI(this.locale.womenNames.length);
             middleNameIndex = randI(this.locale.womenNames.length);
             names = this.locale.womenNames;
@@ -370,3 +411,22 @@ class Mockachino {
 
 //export as a commonJS module
 module.exports = Mockachino;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 31 2018 20:17:49 GMT-0600 (MDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
