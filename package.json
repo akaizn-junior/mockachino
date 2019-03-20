@@ -21,35 +21,39 @@
     "mocker"
   ],
   "scripts": {
-    "test:unit": "mocha 'src/unit.spec.js' --require babel-core/register",
+    "test:unit": "mocha 'src/unit.spec.js' --require @babel/register",
     "test:cov": "nyc npm run test:unit",
     "test": "npm run lint && npm run test:cov",
     "lint": "eslint .",
-    "make:js": "webpack --progress",
-    "watch": "webpack --watch",
+    "compile": "rm -R dist; export NODE_ENV='production'; webpack --progress",
+    "watch": "rm -R dev; webpack --watch",
     "build": "npm run lint && npm run test:cov && npm run make:js",
     "serveBase": "webpack-dev-server",
     "docs": "jsdoc src/Mockachino.js -c jsdoc.json --verbose && cp logo.gif docs",
     "serve": "webpack-dev-server -w",
-    "pack": "./test_package.sh"
+    "pack": "./test_package.sh",
+    "size": "npx size-limit"
   },
+  "size-limit": [
+    {
+      "path": "src/Mockachino.js",
+      "limit": "7 KB"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "@babel/core": "^7.4.0",
+    "@babel/register": "^7.4.0",
     "babel-preset-env": "^1.7.0",
-    "chai": "^4.1.2",
-    "dotenv": "^6.0.0",
-    "eslint": "^5.3.0",
+    "chai": "^4.2.0",
+    "dotenv": "^7.0.0",
+    "eslint": "^5.15.3",
     "jsdoc": "^3.5.5",
-    "makever": "^0.1.1",
     "minami": "^1.2.3",
-    "mocha": "^5.2.0",
-    "nyc": "^12.0.2",
-    "sinon": "^6.1.5",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.14"
+    "mocha": "^6.0.2",
+    "sinon": "^7.2.7",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   }
 }
