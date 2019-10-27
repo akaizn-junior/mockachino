@@ -23,6 +23,8 @@ jobs:
           - npm ci
           - npm run test
 
+after_success: npm run coverage
+
 notifications:
     email:
       - sdnziaka@gmail.com
