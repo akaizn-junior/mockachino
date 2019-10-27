@@ -1,0 +1,5 @@
+{
+	"code-runner.saveAllFilesBeforeRun": true,
+	"eslint.autoFixOnSave": true,
+	"editor.formatOnSave": false
+}

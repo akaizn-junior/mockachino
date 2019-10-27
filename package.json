@@ -1,0 +1,69 @@
+{
+	"name": "mockachino",
+	"version": "1.0.0",
+	"description": "Generate mock data for your apps. Take a sip and relax",
+	"main": "lib/mockachino",
+	"scripts": {
+		"lint": "eslint . --ext=ts",
+		"test": "nyc mocha test/*.spec.js",
+		"watch": "export NODE_ENV=development; webpack --watch --progress",
+		"compile": "webpack --progress"
+	},
+	"nyc": {
+		"check-coverage": true,
+		"per-file": false,
+		"lines": 50,
+		"statements": 50,
+		"functions": 50,
+		"branches": 40,
+		"reporter": [
+			"html",
+			"text-summary"
+		],
+		"exclude": [
+			"**/*.spec.js"
+		],
+		"extension": [
+			".spec.js"
+		],
+		"cache": true,
+		"all": false
+	},
+	"keywords": [
+		"mock",
+		"fake",
+		"data",
+		"seed",
+		"mockachino",
+		"faker",
+		"mocker"
+	],
+	"directories": {
+		"test": "test",
+		"lib": "lib"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/verdebydesign/mockachino.git"
+	},
+	"author": "Simao Nziaka <sdnziaka@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/verdebydesign/mockachino/issues"
+	},
+	"homepage": "https://github.com/verdebydesign/mockachino#readme",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^2.5.0",
+		"@typescript-eslint/parser": "^2.5.0",
+		"chai": "^4.2.0",
+		"dotenv": "^8.2.0",
+		"eslint": "^6.6.0",
+		"mocha": "^6.2.2",
+		"nyc": "^14.1.1",
+		"sinon": "^7.5.0",
+		"ts-loader": "^6.2.1",
+		"typescript": "^3.6.4",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.9"
+	}
+}
