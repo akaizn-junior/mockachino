@@ -4,6 +4,7 @@
 	"description": "Generate mock data for your apps. Take a sip and relax",
 	"main": "lib/mockachino",
 	"scripts": {
+		"test:setup": "tsc --build test/tsconfig.test.json",
 		"lint": "eslint . --ext=ts",
 		"test": "nyc mocha test/*.spec.js --require @babel/register",
 		"coverage": "nyc report --reporter=text-lcov | coveralls",

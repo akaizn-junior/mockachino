@@ -1,0 +1,9 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "tmp",
+		"sourceMap": false
+	},
+	"include": ["../lib/mockachino.ts"],
+	"exclude": ["node_modules"]
+}

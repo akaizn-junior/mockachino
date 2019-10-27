@@ -21,6 +21,7 @@ jobs:
         name: "Unit and coverage tests"
         script:
           - npm ci
+          - npm run test:setup
           - npm run test
 
 after_success: npm run coverage
