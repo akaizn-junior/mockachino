@@ -1,7 +1,7 @@
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
+const { describe, it } = require('mocha');
+const { expect } = require('chai');
 
-import * as mockachino from './tmp/lib/mockachino';
+const mockachino = require('./tmp/lib/mockachino');
 
 describe('mockachino tests', () => {
 	it('should test mock', () => {

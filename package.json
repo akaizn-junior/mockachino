@@ -6,10 +6,30 @@
 	"scripts": {
 		"test:setup": "tsc --build test/tsconfig.test.json",
 		"lint": "eslint . --ext=ts",
-		"test": "nyc mocha test/*.spec.js --require @babel/register",
+		"test": "nyc mocha test/*.spec.js",
 		"coverage": "nyc report --reporter=text-lcov | coveralls",
 		"watch": "export NODE_ENV=development; webpack --watch --progress",
 		"compile": "webpack --progress"
+	},
+	"nyc": {
+		"check-coverage": true,
+		"per-file": false,
+		"lines": 10,
+		"statements": 10,
+		"functions": 10,
+		"branches": 10,
+		"reporter": [
+			"html",
+			"text-summary"
+		],
+		"exclude": [
+			"**/*.spec.js"
+		],
+		"extension": [
+			".spec.js"
+		],
+		"cache": true,
+		"all": false
 	},
 	"keywords": [
 		"mock",
@@ -35,9 +55,6 @@
 	},
 	"homepage": "https://github.com/verdebydesign/mockachino#readme",
 	"devDependencies": {
-		"@babel/core": "^7.6.4",
-		"@babel/preset-env": "^7.6.3",
-		"@babel/register": "^7.6.2",
 		"@typescript-eslint/eslint-plugin": "^2.5.0",
 		"@typescript-eslint/parser": "^2.5.0",
 		"chai": "^4.2.0",
@@ -46,10 +63,10 @@
 		"eslint": "^6.6.0",
 		"mocha": "^6.2.2",
 		"nyc": "^14.1.1",
-		"sinon": "^7.5.0",
 		"ts-loader": "^6.2.1",
 		"typescript": "^3.6.4",
 		"webpack": "^4.41.2",
 		"webpack-cli": "^3.3.9"
-	}
+	},
+	"dependencies": {}
 }
