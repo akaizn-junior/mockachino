@@ -17,6 +17,10 @@ Generate mock data for your apps, take a sip and relax!
 - Paragraphs
 - Texts
 - Cities
+- Picsum Image URLs
+- Picsum Image Blobs
+- Placeholder titles
+- Random Numbers
 - & more
 
 Based on US data; other countries to come.
@@ -78,7 +82,7 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 |height| tall, short|
 |age| young, old, 20s, 30s|
 
-## Badges
+## Status
 
 [![Build Status](https://travis-ci.org/verdebydesign/mockachino.svg?branch=develop)](https://travis-ci.org/verdebydesign/mockachino)
 
