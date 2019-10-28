@@ -103,6 +103,12 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 - [frankie on Unsplash](https://unsplash.com/photos/F_EfOSXh0sI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) for the pic that allowed me to make the awesome logo.
 - [jsdoc](https://github.com/jsdoc3/jsdoc) and [minami](https://github.com/Nijikokun/minami) for being awesome at generating awesome websites from simple comments.
 
+## Contribute
+
+* Follow CONTRIBUTING.md
+
+* Rules of Conduct [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](./CODE_OF_CONDUCT.md)
+
 ## Licence
 
 The MIT License [MIT](https://opensource.org/licenses/MIT)
