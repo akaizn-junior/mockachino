@@ -36,27 +36,30 @@ import forLorem from '../data/forLorem.json';
 
 // images
 
-function buildPicsumUrl(id: number, w?: number, h?: number, o?: PicsumOptions): PicsumUrl {
-	let url = `https://picsum.photos/id/${id}/${w}`;
-	h && `${url}/${h}`;
+function buildPicsumUrl(w?: number, h?: number, o?: PicsumOptions): PicsumUrl {
+	const id = randn(PicsumDefault.ni); // The id of the image to fetch from picsum
+	const opts = o || PicsumDefault.o;
 
-	if (o) {
+	let url = `https://picsum.photos/id/${id}/${w}`;
+	h && (url += `/${h}`);
+
+	if (opts) {
 		// handle extension
-		o.ext && o.ext === 'jpeg' ? url += '.jpg' : url += `.${o.ext}`;
+		opts.ext && opts.ext === 'jpeg' ? url += '.jpg' : url += `.${opts.ext}`;
 
 		// handle grayscale
-		o.grayscale && (url += '?grayscale');
+		opts.grayscale && (url += '?grayscale');
 
 		// handle blur
 		switch (true) {
-		case typeof o.blur === 'number' && o.blur >= 1 && o.blur <= 10:
-			url += o.grayscale ? `&blur=${o.blur}` : `?blur=${o.blur}`;
+		case typeof opts.blur === 'number' && opts.blur >= 1 && opts.blur <= 10:
+			url += opts.grayscale ? `&blur=${opts.blur}` : `?blur=${opts.blur}`;
 			break;
-		case typeof o.blur === 'boolean' && o.blur === true:
-			url += o.grayscale ? '&blur' : '?blur';
+		case typeof opts.blur === 'boolean' && opts.blur === true:
+			url += opts.grayscale ? '&blur' : '?blur';
 			break;
-		case o.blur && o.blur < 1 || o.blur && o.blur > 10:
-			url += o.grayscale ? '&blur' : '?blur';
+		case opts.blur && opts.blur < 1 || opts.blur && opts.blur > 10:
+			url += opts.grayscale ? '&blur' : '?blur';
 			break;
 		}
 	}
@@ -70,14 +73,13 @@ function buildPicsumUrl(id: number, w?: number, h?: number, o?: PicsumOptions): 
  * @see [Using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
  * @see [Using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
  * @see [Blob Reader](https://developer.mozilla.org/en-US/docs/Web/API/Body/body)
- * @param {number} id The id of the image to fetch from picsum
  * @param {number} w The with of the image to fetch
  * @param {number} h The height of the image to fetch
  * @param {PicSumOptions} o Options to build the image to fetch
  */
-async function fetchPicsum(id: number, w?: number, h?: number, o?: PicsumOptions): Promise<PicsumBlob> {
+async function fetchPicsum(w?: number, h?: number, o?: PicsumOptions): Promise<PicsumBlob> {
 	const opts = { ...o, ext: o && o.ext || 'jpg' };
-	const urls = buildPicsumUrl(id, w, h, opts);
+	const urls = buildPicsumUrl(w, h, opts);
 	let data = await fetch(urls.data, fetchInit);
 
 	// read the body
@@ -132,7 +134,7 @@ function usZipcode(): string {
 function usAddress(): UsAddress {
 	// select a random state
 	let si = randn(states.length);
-	let state = states[si + 1];
+	let state = states[si];
 
 	//usMajorCities are defines as 'city, state'
 	//so we need to split the string first and than return the city
@@ -281,7 +283,6 @@ export function mock(options?: Options): Mocked | void {
 	const definedOptions = options || defaultOptions;
 	const { locale } = definedOptions;
 	if (locales[locale]) {
-		// pass
 		return {
 			person: buildPerson(definedOptions),
 			phoneNumber: buildPhoneNumber(definedOptions),
@@ -300,8 +301,8 @@ export function random(x?: any, y?: any, z?: any): Random {
 	return {
 		number: randn(x || 101, y || 0),
 		title: Randi(x || ' '),
-		imageUrl: buildPicsumUrl(randn(PicsumDefault.ni), x || PicsumDefault.w, y, z || PicsumDefault.o),
-		imageBlob: fetchPicsum(randn(PicsumDefault.ni), x || PicsumDefault.w, y, z || PicsumDefault.o)
+		imageUrl: buildPicsumUrl(x || PicsumDefault.w, y, z),
+		imageBlob: fetchPicsum(x || PicsumDefault.w, y, z)
 	};
 }
 
