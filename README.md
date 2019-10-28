@@ -25,10 +25,6 @@ Generate mock data for your apps, take a sip and relax!
 
 Based on US data; other countries to come.
 
-## Documentation
-
-- Read the docs [here](https://verdebydesign.github.io/mockachino/)
-
 ## Usage
 
 ### Browser
@@ -69,18 +65,29 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 */
 ```
 
-## Options
+## ```mockachino.mock``` options
 
 | Option | Description |
 | --- | --- |
 | Locale | Defines the locale the data should be based on. Defaults to 'us', more locales to come |
 | Person | Mock a person, define the person sex, age, and height |
-
-|Person||
 |--|--|
 |sex| woman, man|
 |height| tall, short|
 |age| young, old, 20s, 30s|
+
+## ```mockachino.random``` usage
+
+|Data| Description| Usage|
+|--|--|--|
+| Number | Just a random number | ```Mockachino.random(200, 15).number; // A random number from 15 to 199```
+| Title | A random placeholder title | ```Mockachino.random('-').title; // A-random-title separated by '-'```
+| ImageUrl | A random image URL from Picsum | ```Mockachino.random(350, 300).imageUrl; // A random image URL of 350x300 size from Picsum``` |
+| ImageBlob | A random image blob from Picsum | ```Mockachino.random(400, 500).imageBlob; // A random image Blob of 400x500 size from Picsum``` |
+
+## Read more
+
+- [Documentation](https://verdebydesign.github.io/mockachino/)
 
 ## Status
 
