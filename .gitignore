@@ -3,5 +3,3 @@ cypress
 .nyc_output
 coverage
 *tmp
-dev
-dist
