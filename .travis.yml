@@ -4,28 +4,28 @@ node_js:
 
 cache:
     directories:
-        - "node_modules"
+      - "node_modules"
 
 stages:
+    - lint
     - test
-    - build
 
 jobs:
     include:
-        - stage: test
-          name: "Unit and coverage tests"
-          script:
-            - npm install
-            - npm run test
-        - stage: build
-          name: "Make with webpack"
-          script:
-            - npm install
-            - npm run make:js
+      - stage: lint
+        name: "Lint codebase"
+        script:
+          - npm ci
+          - npm run lint
+      - stage: test
+        name: "Unit and coverage tests"
+        script:
+          - npm ci
+          - npm run test:setup
+          - npm run test
+
+after_success: npm run coverage
 
 notifications:
-  email:
-    - sdnziaka@gmail.com
-
-
-
+    email:
+      - sdnziaka@gmail.com
