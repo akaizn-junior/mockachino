@@ -14,17 +14,17 @@ module.exports = {
 			{
 				test: /\.ts$/,
 				use: 'ts-loader',
-				exclude: /node_modules/,
+				exclude: /node_modules/
 			},
 		],
 	},
 	resolve: {
-		extensions: ['.ts'],
+		extensions: ['.ts']
 	},
 	output: {
 		filename: DEV ? process.env.NAME + '.js' : process.env.NAME + '.min.js',
 		library: process.env.LIB,
 		libraryTarget: process.env.TARGET,
 		path: DEV ? path.join(__dirname, 'dev') : path.join(__dirname, 'dist', process.env.TARGET)
-	},
+	}
 };
