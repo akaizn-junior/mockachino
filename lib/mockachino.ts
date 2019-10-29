@@ -171,6 +171,7 @@ function usAddress(): UsAddress {
  * Generates a US phone number
  * @see {@link https://bit.ly/2LvNuVn | US phone number format}
  * @returns A ten digit string representing a US phone number
+ * @ignore
  */
 function usPhoneNumber(): UsPhoneNumber {
 	//NPA-NXX-XXXX
@@ -337,7 +338,8 @@ function buildPerson(opts: Options): Person {
  *			age: '20s'
  *		}
  *	});
- * // Object { person: {...}, phoneNumber: {...}, address: {...}, ... }
+ *
+ * // ex: Object { person: {...}, phoneNumber: {...}, address: {...}, ... }
  */
 export function mock(options?: Options): Mocked | void {
 	const definedOptions = options || defaultOptions;
@@ -360,7 +362,8 @@ export function mock(options?: Options): Mocked | void {
  * @param o Config options to build the
  * @example
  * const randomImage = Mockachino.random(300, 350, { grayscale: true, ext: 'webp'}).imageUrl;
- * // Object { data: "https://picsum.photos/id/575/300/350.webp?grayscale", info: "https://picsum.photos/id/575/info" }
+ *
+ * // ex: Object { data: "https://picsum.photos/id/575/300/350.webp?grayscale", info: "https://picsum.photos/id/575/info" }
  */
 export function random(w?: number, h?: number, o?: PicsumOptions): Random;
 /**
@@ -369,7 +372,8 @@ export function random(w?: number, h?: number, o?: PicsumOptions): Random;
  * @param min The incluse minimum value
  * @example
  * const randomNumber = Mockachino.random(200, 10);
- * // 87
+ *
+ * // ex: 87
  */
 export function random(max?: number, min?: number): Random;
 /**
@@ -377,7 +381,8 @@ export function random(max?: number, min?: number): Random;
  * @param separator String separator other than space
  * @example
  * const randomTitle = Mockachino.random('-');
- * // a-random-title
+ *
+ * // ex: a-random-title
  */
 export function random(separator?: string): Random;
 
@@ -396,7 +401,8 @@ export function random(x?: any, y?: any, z?: any): Random {
  * @param sep Line separator other than the new-line '\n' char
  * @example
  * const loremData = Mockachino.lorem();
- * // Object { sentence: '...', paragraph: '...', text: '...' }
+ *
+ * // ex: Object { sentence: '...', paragraph: '...', text: '...' }
  */
 export function lorem(sep?: string): Lorem {
 	sep = sep || '\n';
