@@ -58,7 +58,7 @@
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^2.5.0",
 		"@typescript-eslint/parser": "^2.5.0",
-		"@verdebydesign/randi": "0.0.6",
+		"@verdebydesign/randi": "0.0.7",
 		"chai": "^4.2.0",
 		"coveralls": "^3.0.7",
 		"dotenv": "^8.2.0",
