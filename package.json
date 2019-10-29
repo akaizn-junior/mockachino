@@ -32,6 +32,10 @@
 		"cache": true,
 		"all": false
 	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org",
+		"@verdebydesign:registry": "https://npm.pkg.github.com/verdebydesign"
+	},
 	"keywords": [
 		"mock",
 		"fake",
