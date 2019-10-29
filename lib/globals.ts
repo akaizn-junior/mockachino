@@ -17,6 +17,9 @@ export const locales: Record<string, string> = {
 	us: 'en-US'
 };
 
+/**
+ * Fallback configurations for 'mock'
+ */
 export const defaultOptions: Options = {
 	locale: 'us',
 	person: {
@@ -26,6 +29,9 @@ export const defaultOptions: Options = {
 	}
 };
 
+/**
+ * Default options for Picsum image url and blob creation
+ */
 export const PicsumDefault = {
 	ni: 1000, // number of images on Picsum
 	w: 300,
@@ -37,6 +43,9 @@ export const PicsumDefault = {
 	}
 };
 
+/**
+ * fetch Web API request configurations
+ */
 export const fetchInit: RequestInit = {
 	method: 'GET',
 	cache: 'default'
