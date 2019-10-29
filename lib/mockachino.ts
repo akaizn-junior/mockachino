@@ -5,7 +5,7 @@
 */
 
 import { randn } from './utils';
-import Randi from '@verdebydesign/randi';
+import randi from '@verdebydesign/randi';
 
 import {
 	Options,
@@ -390,7 +390,7 @@ export function random(separator?: string): Random;
 export function random(x?: any, y?: any, z?: any): Random {
 	return {
 		number: randn(x || 101, y || 0),
-		title: Randi(x || ' '),
+		title: randi(x || ' '),
 		imageUrl: buildPicsumUrl(x || PicsumDefault.w, y, z),
 		imageBlob: fetchPicsum(x || PicsumDefault.w, y, z)
 	};
