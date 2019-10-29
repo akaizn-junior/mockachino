@@ -5,7 +5,7 @@
 */
 
 import { randn } from './utils';
-import Randi from './randi';
+import Randi from '@verdebydesign/randi';
 
 import {
 	Options,
