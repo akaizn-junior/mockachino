@@ -36,6 +36,13 @@ import forLorem from '../data/forLorem.json';
 
 // images
 
+/**
+ * Fetches an image url from picsum with image metadata
+ * @param w The with of the image to fetch
+ * @param h The height of the image to fetch
+ * @param o Options to build the image to fetch
+ * @ignore
+ */
 function buildPicsumUrl(w?: number, h?: number, o?: PicsumOptions): PicsumUrl {
 	const id = randn(PicsumDefault.ni); // The id of the image to fetch from picsum
 	const opts = o || PicsumDefault.o;
@@ -73,9 +80,10 @@ function buildPicsumUrl(w?: number, h?: number, o?: PicsumOptions): PicsumUrl {
  * @see [Using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
  * @see [Using fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
  * @see [Blob Reader](https://developer.mozilla.org/en-US/docs/Web/API/Body/body)
- * @param {number} w The with of the image to fetch
- * @param {number} h The height of the image to fetch
- * @param {PicSumOptions} o Options to build the image to fetch
+ * @param w The with of the image to fetch
+ * @param h The height of the image to fetch
+ * @param o Options to build the image to fetch
+ * @ignore
  */
 async function fetchPicsum(w?: number, h?: number, o?: PicsumOptions): Promise<PicsumBlob> {
 	const opts = { ...o, ext: o && o.ext || 'jpg' };
@@ -124,6 +132,10 @@ async function fetchPicsum(w?: number, h?: number, o?: PicsumOptions): Promise<P
 
 // locale specific
 
+/**
+ * Build a US zipcod
+ * @ignore
+ */
 function usZipcode(): string {
 	let zipcode = '';
 	// A US zip code is a 5 digits number consisting of digits from 0-9
@@ -131,6 +143,10 @@ function usZipcode(): string {
 	return zipcode;
 }
 
+/**
+ * Build a US address
+ * @ignore
+ */
 function usAddress(): UsAddress {
 	// select a random state
 	let si = randn(states.length);
@@ -180,6 +196,11 @@ function usPhoneNumber(): UsPhoneNumber {
 	return number;
 }
 
+/**
+ * Generates a height value in imperial units
+ * @param h The seed used to build the height
+ * @ignore
+ */
 function usPersonHeight(h: string): string {
 	// short: 4 - 5 ft
 	const [shortMinFt, shortMaxFt] = [4, 5];
@@ -210,6 +231,11 @@ function usPersonHeight(h: string): string {
 	}
 }
 
+/**
+ * Generates a number that will represent age based on a seed value
+ * @param age The seed used for the age value
+ * @ignore
+ */
 function personAge(age: string): number {
 	switch (age) {
 	case '20s': return randn(30, 20);
@@ -221,6 +247,11 @@ function personAge(age: string): number {
 	}
 }
 
+/**
+ * Build a person obejct filled with data based on the 'us' locale
+ * @param opts Config options
+ * @ignore
+ */
 function usPerson(opts: Options): Person {
 	// get random indexes
 	const ni: number = randn(menNames.length);
@@ -256,6 +287,11 @@ function usPerson(opts: Options): Person {
 
 // locale builders
 
+/**
+ * Builds a phone number based on the locale
+ * @param opts Config options
+ * @ignore
+ */
 function buildPhoneNumber(opts: Options): UsPhoneNumber {
 	switch (opts.locale) {
 	case 'en-US': return usPhoneNumber();
@@ -263,6 +299,11 @@ function buildPhoneNumber(opts: Options): UsPhoneNumber {
 	}
 }
 
+/**
+ * Build an address based on the locale
+ * @param opts Config options
+ * @ignore
+ */
 function buildAddress(opts: Options): UsAddress {
 	switch (opts.locale) {
 	case 'en-US': return usAddress();
@@ -270,6 +311,11 @@ function buildAddress(opts: Options): UsAddress {
 	}
 }
 
+/**
+ * Builds a person object based on the locale
+ * @param opts Config options
+ * @ignore
+ */
 function buildPerson(opts: Options): Person {
 	switch (opts.locale) {
 	case 'en-US': return usPerson(opts);
@@ -279,6 +325,20 @@ function buildPerson(opts: Options): Person {
 
 // interface
 
+/**
+ * Generates random data representing a person, phone number, address and more.
+ * @param options Config options
+ * @example
+ * let mocked = Mockachino.mock({
+ *	    locale: 'us',
+ *	    person: {
+ *			sex: 'man',
+ *			height: 'tall',
+ *			age: '20s'
+ *		}
+ *	});
+ * // Object { person: {...}, phoneNumber: {...}, address: {...}, ... }
+ */
 export function mock(options?: Options): Mocked | void {
 	const definedOptions = options || defaultOptions;
 	const { locale } = definedOptions;
@@ -293,9 +353,34 @@ export function mock(options?: Options): Mocked | void {
 	return;
 }
 
+/**
+ * Generates a random Picsum image url or blob
+ * @param w The width of the image
+ * @param h The height of the image
+ * @param o Config options to build the
+ * @example
+ * const randomImage = Mockachino.random(300, 350, { grayscale: true, ext: 'webp'}).imageUrl;
+ * // Object { data: "https://picsum.photos/id/575/300/350.webp?grayscale", info: "https://picsum.photos/id/575/info" }
+ */
 export function random(w?: number, h?: number, o?: PicsumOptions): Random;
+/**
+ * Generates a random number based on a given range or just a max value
+ * @param max The exclusive maximum value
+ * @param min The incluse minimum value
+ * @example
+ * const randomNumber = Mockachino.random(200, 10);
+ * // 87
+ */
 export function random(max?: number, min?: number): Random;
+/**
+ * Generates a random placeholder title
+ * @param separator String separator other than space
+ * @example
+ * const randomTitle = Mockachino.random('-');
+ * // a-random-title
+ */
 export function random(separator?: string): Random;
+
 // eslint-disable-next-line
 export function random(x?: any, y?: any, z?: any): Random {
 	return {
@@ -306,6 +391,13 @@ export function random(x?: any, y?: any, z?: any): Random {
 	};
 }
 
+/**
+ * Generates lorem ipsum data
+ * @param sep Line separator other than the new-line '\n' char
+ * @example
+ * const loremData = Mockachino.lorem();
+ * // Object { sentence: '...', paragraph: '...', text: '...' }
+ */
 export function lorem(sep?: string): Lorem {
 	sep = sep || '\n';
 	// takes a param that defines the amount of sentences needed
