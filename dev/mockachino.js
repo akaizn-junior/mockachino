@@ -465,7 +465,7 @@ exports.mock = mock;
 function random(x, y, z) {
     return {
         number: utils_1.randn(x || 101, y || 0),
-        title: randi_1["default"](x || ' '),
+        title: randi_1["default"](typeof x === 'string' && x || ' '),
         imageUrl: buildPicsumUrl(x || globals_1.PicsumDefault.w, y, z),
         imageBlob: fetchPicsum(x || globals_1.PicsumDefault.w, y, z)
     };
