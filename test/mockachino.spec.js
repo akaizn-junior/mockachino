@@ -10,6 +10,10 @@ global.fetch = mockFetch;
 global.ReadableStream = class { };
 global.Response = class { blob() { } };
 
+const hasValidValues = mocked =>
+	Object.values(mocked)
+	.every(object => object !== undefined && Object.values(object).every(value => value !== undefined));
+
 const mockachino = require('./tmp/lib/mockachino');
 const {
 	mockKeys,
@@ -40,6 +44,23 @@ describe('mockachino mock tests', () => {
 
 		expect(mockachino.mock(opts)).has.keys(mockKeys);
 		expect(mockachino.mock(opts)).has.keys(mockKeys);
+	});
+
+	it('should test mock with all config options and valid values', () => {
+		const opts = {
+			locale: 'us',
+			person: {
+				sex: 'man',
+				height: 'short',
+				age: '40s'
+			}
+		};
+
+		expect(hasValidValues(mockachino.mock(opts))).to.be.true;
+	});
+
+	it('should test mock with no config options and valid values', () => {
+		expect(hasValidValues(mockachino.mock())).to.be.true;
 	});
 
 	it('should test all mocked properties', () => {
@@ -113,6 +134,14 @@ describe('mockachino lorem tests', () => {
 		expect(mockachino.lorem('*').text(4)).contains('*');
 		expect(mockachino.lorem('-').sentence).does.not.contain('-');
 	});
+
+	it('should test lorem with params and valid values', () => {
+		expect(hasValidValues(mockachino.lorem('-'))).to.be.true;
+	});
+
+	it('should test lorem with no params and valid values', () => {
+		expect(hasValidValues(mockachino.lorem())).to.be.true;
+	});
 });
 
 describe('mockachino random tests', () => {
@@ -125,6 +154,12 @@ describe('mockachino random tests', () => {
 	it('should test random params', () => {
 		expect(mockachino.random).to.be.a('function');
 		expect(mockachino.random()).has.keys(randomKeys);
+	});
+
+	it('should test random has valid values', () => {
+		expect(hasValidValues(mockachino.random())).to.be.true;
+		expect(hasValidValues(mockachino.random(20, 5))).to.be.true;
+		expect(hasValidValues(mockachino.random('-'))).to.be.true;
 	});
 
 	it('should test random for random numbers', () => {

@@ -35,12 +35,12 @@
 
 		console.log(mocked);
 		// mock without options
-		// console.log(Mockachino.mock().person);
-		// console.log(Mockachino.random(12, 8).number);
-		// console.log(Mockachino.random('_').title);
-		// console.log(Mockachino.lorem().sentence);
-		// console.log(Mockachino.lorem().paragraph);
-		// console.log(Mockachino.lorem(' ').text(10));
+		console.log(Mockachino.mock().person);
+		console.log(Mockachino.random(12, 8).number);
+		console.log(Mockachino.random('_').title);
+		console.log(Mockachino.lorem().sentence);
+		console.log(Mockachino.lorem().paragraph);
+		console.log(Mockachino.lorem(' ').text(10));
 
 		const getRandomImage = async function () {
 			let randomImageUrl = Mockachino.random(500, 500, { grayscale: true, blur: false, ext: 'jpeg' }).imageUrl;

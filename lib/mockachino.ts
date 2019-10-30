@@ -390,7 +390,7 @@ export function random(separator?: string): Random;
 export function random(x?: any, y?: any, z?: any): Random {
 	return {
 		number: randn(x || 101, y || 0),
-		title: randi(x || ' '),
+		title: randi(typeof x === 'string' && x || ' '),
 		imageUrl: buildPicsumUrl(x || PicsumDefault.w, y, z),
 		imageBlob: fetchPicsum(x || PicsumDefault.w, y, z)
 	};
