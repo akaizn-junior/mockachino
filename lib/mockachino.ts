@@ -20,18 +20,20 @@ import {
 	UsPhoneNumber
 } from './types';
 
+import { validateOptions, validatePersonOpts } from './validators';
 import {
-	titles,
-	emailProviders,
+	usPhoneNumber,
+	usAddress,
+	usPerson
+} from './helpers';
+
+import {
 	locales,
 	defaultOptions,
 	PicsumDefault,
 	fetchInit
 } from './globals';
 
-import menNames from '../data/locale/us/menNames.json';
-import states from '../data/locale/us/states.json';
-import majorCities from '../data/locale/us/majorCities.json';
 import forLorem from '../data/forLorem.json';
 
 // images
@@ -130,171 +132,15 @@ async function fetchPicsum(w?: number, h?: number, o?: PicsumOptions): Promise<P
 	return { blob: null, info: null };
 }
 
-// locale specific
-
-/**
- * Build a US zipcod
- * @ignore
- */
-function usZipcode(): string {
-	let zipcode = '';
-	// A US zip code is a 5 digits number consisting of digits from 0-9
-	for (let i = 0; i < 5; i++) zipcode += randn(9);
-	return zipcode;
-}
-
-/**
- * Build a US address
- * @ignore
- */
-function usAddress(): UsAddress {
-	// select a random state
-	let si = randn(states.length);
-	let state = states[si];
-
-	//usMajorCities are defines as 'city, state'
-	//so we need to split the string first and than return the city
-	let cityIndex = randn(majorCities.length);
-	let city = majorCities[cityIndex].split(',')[0];
-
-	return {
-		city,
-		state: state.name,
-		stateAbbrev: state.abbreviation,
-		zipCode: usZipcode(),
-		countryAbbrev: 'U.S',
-		country: 'United States of America'
-	};
-}
-
-/**
- * Generates a US phone number
- * @see {@link https://bit.ly/2LvNuVn | US phone number format}
- * @returns A ten digit string representing a US phone number
- * @ignore
- */
-function usPhoneNumber(): UsPhoneNumber {
-	//NPA-NXX-XXXX
-	//NPA - Area code. PA goes from 0 - 9
-	//NXX-XXXX - 7 digit subscriber number
-	//N - code for the local central office, goes from 2 to 9
-
-	let areaCode = `${randn(10, 2)}${randn(9)}${randn(9)}`;
-
-	//generate the rest of the 7 digit subscriber number
-	let subNumber = `${randn(10, 2)}`;
-	for (let i = 0; i < 6; i++) subNumber += i;
-
-	let number = {
-		subNumber,
-		country: 'us',
-		countryCode: '+1',
-		cityCode: areaCode,
-		number: `${areaCode}${subNumber}`,
-		withAreaCode: `+1${areaCode}${subNumber}`
-	};
-
-	return number;
-}
-
-/**
- * Generates a height value in imperial units
- * @param h The seed used to build the height
- * @ignore
- */
-function usPersonHeight(h: string): string {
-	// short: 4 - 5 ft
-	const [shortMinFt, shortMaxFt] = [4, 5];
-	// short: 0 - 8 inches
-	const [, shortMaxIn] = [0, 8];
-	// tall: 5 - 6 ft
-	const [tallMinFt, tallMaxFt] = [5, 6];
-	// tall: 9 - 12 inches
-	const [tallMinIn, tallMaxIn] = [9, 11];
-	// get random number for height in feets
-	const sFt: number = randn(shortMaxFt + 1, shortMinFt);
-	const tFt: number = randn(tallMaxFt + 1, tallMinFt);
-	// build
-	switch (true) {
-	case h === 'short':
-	case sFt === shortMinFt:
-		return `${sFt}.${randn(tallMaxIn + 1)}`;
-	case h === 'short':
-	case sFt === shortMaxFt:
-		return `${sFt}.${randn(shortMaxIn + 1)}`;
-	case h === 'tall':
-	case tFt === shortMaxFt:
-		return `${tFt}.${randn(tallMaxIn + 1, tallMinIn)}`;
-	case h === 'tall':
-	case tFt === tallMaxFt:
-		return `${tFt}.${randn(tallMaxIn + 1)}`;
-	default: return `${tFt}.${randn(tallMaxIn + 1, tallMinIn)}`;
-	}
-}
-
-/**
- * Generates a number that will represent age based on a seed value
- * @param age The seed used for the age value
- * @ignore
- */
-function personAge(age: string): number {
-	switch (age) {
-	case '20s': return randn(30, 20);
-	case '30s': return randn(40, 30);
-	case '40s': return randn(50, 40);
-	case 'young': return randn(51, 13);
-	case 'old': return randn(100, 51);
-	default: return randn(99, 13);
-	}
-}
-
-/**
- * Build a person obejct filled with data based on the 'us' locale
- * @param opts Config options
- * @ignore
- */
-function usPerson(opts: Options): Person {
-	// get random indexes
-	const ni: number = randn(menNames.length);
-	const mi: number = randn(menNames.length);
-	const si: number = randn(menNames.length);
-	const ti: number = randn(titles.prefixTitle.length);
-	const sfi: number = randn(titles.suffixTitle.length);
-	// build
-	const name: string = menNames[ni];
-	const middlename: string = menNames[mi];
-	const middleInitial: string = middlename.charAt(0);
-	const lastname: string = menNames[si];
-	const eprovider: string = emailProviders[randn(emailProviders.length)];
-	const initials = `${name.charAt(0)}.${lastname.charAt(0)}`;
-	const email = `${name.toLowerCase()}.${lastname.toLowerCase()}@${eprovider}`;
-
-	return {
-		name,
-		middlename,
-		middleInitial,
-		lastname,
-		initials,
-		email,
-		academicTitle: titles.academic[randn(titles.academic.length)],
-		sex: opts.person.sex,
-		age: personAge(opts.person.age),
-		height: usPersonHeight(opts.person.height),
-		nationality: opts.locale,
-		title: titles.prefixTitle[ti],
-		suffixTitle: titles.suffixTitle[sfi]
-	};
-}
-
 // locale builders
 
 /**
  * Builds a phone number based on the locale
- * @param opts Config options
+ * @param locale The locale the data is built for
  * @ignore
  */
-function buildPhoneNumber(opts: Options): UsPhoneNumber {
-	switch (opts.locale) {
+function buildPhoneNumber(locale: string): UsPhoneNumber {
+	switch (locale) {
 	case 'en-US': return usPhoneNumber();
 	default: return usPhoneNumber();
 	}
@@ -302,11 +148,11 @@ function buildPhoneNumber(opts: Options): UsPhoneNumber {
 
 /**
  * Build an address based on the locale
- * @param opts Config options
+ * @param locale The locale the data is built for
  * @ignore
  */
-function buildAddress(opts: Options): UsAddress {
-	switch (opts.locale) {
+function buildAddress(locale: string): UsAddress {
+	switch (locale) {
 	case 'en-US': return usAddress();
 	default: return usAddress();
 	}
@@ -314,14 +160,18 @@ function buildAddress(opts: Options): UsAddress {
 
 /**
  * Builds a person object based on the locale
+ * @param locale The locale the data is built for
  * @param opts Config options
  * @ignore
  */
-function buildPerson(opts: Options): Person {
-	switch (opts.locale) {
-	case 'en-US': return usPerson(opts);
-	default: return usPerson(defaultOptions);
+function buildPerson(locale: string, opts: Options): Person | undefined {
+	if (validatePersonOpts(opts.person)) {
+		switch (locale) {
+		case 'en-US': return usPerson(opts.person);
+		}
 	}
+
+	return;
 }
 
 // interface
@@ -341,14 +191,15 @@ function buildPerson(opts: Options): Person {
  *
  * // ex: Object { person: {...}, phoneNumber: {...}, address: {...}, ... }
  */
-export function mock(options?: Options): Mocked | void {
-	const definedOptions = options || defaultOptions;
-	const { locale } = definedOptions;
-	if (locales[locale]) {
+export function mock(options?: Options): Mocked | undefined {
+	const definedOpts = validateOptions(defaultOptions, options);
+	if (definedOpts && locales[definedOpts.locale]) {
+		const definedLocale = locales[definedOpts.locale];
+
 		return {
-			person: buildPerson(definedOptions),
-			phoneNumber: buildPhoneNumber(definedOptions),
-			address: buildAddress(definedOptions)
+			person: buildPerson(definedLocale, definedOpts),
+			phoneNumber: buildPhoneNumber(definedLocale),
+			address: buildAddress(definedLocale)
 		};
 	}
 

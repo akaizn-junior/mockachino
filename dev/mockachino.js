@@ -140,6 +140,28 @@ module.exports = JSON.parse("[{\"name\":\"Alabama\",\"abbreviation\":\"AL\"},{\"
 
 /***/ }),
 
+/***/ "./data/locale/us/surnames.json":
+/*!**************************************!*\
+  !*** ./data/locale/us/surnames.json ***!
+  \**************************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("[\"Smith\",\"Johnson\",\"Williams\",\"Jones\",\"Brown\",\"Davis\",\"Miller\",\"Wilson\",\"Moore\",\"Taylor\",\"Anderson\",\"Thomas\",\"Jackson\",\"White\",\"Harris\",\"Martin\",\"Thompson\",\"Garcia\",\"Martinez\",\"Robinson\",\"Clark\",\"Rodriguez\",\"Lewis\",\"Lee\",\"Walker\",\"Hall\",\"Allen\",\"Young\",\"Hernandez\",\"King\",\"Wright\",\"Lopez\",\"Hill\",\"Scott\",\"Green\",\"Adams\",\"Baker\",\"Gonzalez\",\"Nelson\",\"Carter\",\"Mitchell\",\"Perez\",\"Roberts\",\"Turner\",\"Phillips\",\"Campbell\",\"Parker\",\"Evans\",\"Edwards\",\"Collins\",\"Stewart\",\"Sanchez\",\"Morris\",\"Rogers\",\"Reed\",\"Cook\",\"Morgan\",\"Bell\",\"Murphy\",\"Bailey\",\"Rivera\",\"Cooper\",\"Richardson\",\"Cox\",\"Howard\",\"Ward\",\"Torres\",\"Peterson\",\"Gray\",\"Ramirez\",\"James\",\"Watson\",\"Brooks\",\"Kelly\",\"Sanders\",\"Price\",\"Bennett\",\"Wood\",\"Barnes\",\"Ross\",\"Henderson\",\"Coleman\",\"Jenkins\",\"Perry\",\"Powell\",\"Long\",\"Patterson\",\"Hughes\",\"Flores\",\"Washington\",\"Butler\",\"Simmons\",\"Foster\",\"Gonzales\",\"Bryant\",\"Alexander\",\"Russell\",\"Griffin\",\"Diaz\",\"Hayes\"]");
+
+/***/ }),
+
+/***/ "./data/locale/us/womenNames.json":
+/*!****************************************!*\
+  !*** ./data/locale/us/womenNames.json ***!
+  \****************************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("[\"Emma\",\"Olivia\",\"Ava\",\"Isabella\",\"Sophia\",\"Mia\",\"Charlotte\",\"Amelia\",\"Evelyn\",\"Abigail\",\"Harper\",\"Emily\",\"Elizabeth\",\"Avery\",\"Sofia\",\"Ella\",\"Madison\",\"Scarlett\",\"Victoria\",\"Aria\",\"Grace\",\"Chloe\",\"Camila\",\"Penelope\",\"Riley\",\"Layla\",\"Lillian\",\"Nora\",\"Zoey\",\"Mila\",\"Aubrey\",\"Hannah\",\"Lily\",\"Addison\",\"Eleanor\",\"Natalie\",\"Luna\",\"Savannah\",\"Brooklyn\",\"Leah\",\"Zoe\",\"Stella\",\"Hazel\",\"Ellie\",\"Paisley\",\"Audrey\",\"Skylar\",\"Violet\",\"Claire\",\"Bella\",\"Aurora\",\"Lucy\",\"Anna\",\"Samantha\",\"Caroline\",\"Genesis\",\"Aaliyah\",\"Kennedy\",\"Kinsley\",\"Allison\",\"Maya\",\"Sarah\",\"Madelyn\",\"Adeline\",\"Alexa\",\"Ariana\",\"Elena\",\"Gabriella\",\"Naomi\",\"Alice\",\"Sadie\",\"Hailey\",\"Eva\",\"Emilia\",\"Autumn\",\"Quinn\",\"Nevaeh\",\"Piper\",\"Ruby\",\"Serenity\",\"Willow\",\"Everly\",\"Cora\",\"Kaylee\",\"Lydia\",\"Aubree\",\"Arianna\",\"Eliana\",\"Peyton\",\"Melanie\",\"Gianna\",\"Isabelle\",\"Julia\",\"Valentina\",\"Nova\",\"Clara\",\"Vivian\",\"Reagan\",\"Mackenzie\",\"Madeline\"]");
+
+/***/ }),
+
 /***/ "./lib/globals.ts":
 /*!************************!*\
   !*** ./lib/globals.ts ***!
@@ -157,9 +179,10 @@ exports.emailProviders = [
     'live.com'
 ];
 exports.titles = {
-    prefixTitle: ['Mr.', 'Mrs.', 'Ms.'],
-    suffixTitle: ['Sr.', 'Jr.', '3rd', 'The 3rd'],
-    academic: ['Dr.', 'Prof.']
+    menTitles: ['Mr.'],
+    womenTitles: ['Miss', 'Mrs.', 'Ms.'],
+    academic: ['Dr.', 'Prof.'],
+    suffixTitle: ['Sr.', 'Jr.', '3rd', 'The 3rd']
 };
 exports.locales = {
     us: 'en-US'
@@ -186,6 +209,152 @@ exports.fetchInit = {
     method: 'GET',
     cache: 'default'
 };
+exports.sexes = ['man', 'woman'];
+exports.ages = [
+    '20s', '30s', '40s', 'young', 'old', 'youngAdult',
+    'mid20s', 'mid40s', 'middleAged'
+];
+exports.heights = ['tall', 'short'];
+
+
+/***/ }),
+
+/***/ "./lib/helpers.ts":
+/*!************************!*\
+  !*** ./lib/helpers.ts ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+exports.__esModule = true;
+var utils_1 = __webpack_require__(/*! ./utils */ "./lib/utils.ts");
+var globals_1 = __webpack_require__(/*! ./globals */ "./lib/globals.ts");
+var menNames_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/menNames.json */ "./data/locale/us/menNames.json"));
+var womenNames_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/womenNames.json */ "./data/locale/us/womenNames.json"));
+var surnames_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/surnames.json */ "./data/locale/us/surnames.json"));
+var states_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/states.json */ "./data/locale/us/states.json"));
+var majorCities_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/majorCities.json */ "./data/locale/us/majorCities.json"));
+function personBySex(sex) {
+    var isWoman = sex === 'woman';
+    var isMan = sex === 'man';
+    var namesList = isMan ? menNames_json_1["default"] : isWoman ? womenNames_json_1["default"] : [];
+    var titlesBySex = isMan ? globals_1.titles.menTitles : isWoman ? globals_1.titles.womenTitles : [];
+    var name = namesList[utils_1.randn(namesList.length)];
+    var middlename = namesList[utils_1.randn(namesList.length)];
+    var middleInitial = middlename.charAt(0);
+    var lastname = surnames_json_1["default"][utils_1.randn(surnames_json_1["default"].length)];
+    var eprovider = globals_1.emailProviders[utils_1.randn(globals_1.emailProviders.length)];
+    var initials = name.charAt(0) + "." + lastname.charAt(0);
+    var email = name.toLowerCase() + "." + lastname.toLowerCase() + "@" + eprovider;
+    var title = titlesBySex[utils_1.randn(titlesBySex.length)];
+    var suffixTitle = globals_1.titles.suffixTitle[utils_1.randn(globals_1.titles.suffixTitle.length)];
+    return {
+        name: name,
+        middlename: middlename,
+        middleInitial: middleInitial,
+        lastname: lastname,
+        initials: initials,
+        email: email,
+        title: title,
+        suffixTitle: suffixTitle
+    };
+}
+function personAge(age) {
+    switch (age) {
+        case '20s': return utils_1.randn(30, 20);
+        case '30s': return utils_1.randn(40, 30);
+        case '40s': return utils_1.randn(50, 40);
+        case 'young': return utils_1.randn(18, 13);
+        case 'youngAdult': return utils_1.randn(23, 18);
+        case 'mid20s': return utils_1.randn(30, 25);
+        case 'mid40s': return utils_1.randn(40, 35);
+        case 'middleAged': return utils_1.randn(61, 40);
+        case 'old': return utils_1.randn(100, 61);
+        default: return utils_1.randn(99, 13);
+    }
+}
+function usZipcode() {
+    var zipcode = '';
+    for (var i = 0; i < 5; i++)
+        zipcode += utils_1.randn(9);
+    return zipcode;
+}
+function usPersonHeight(h) {
+    var _a = [4, 5], shortMinFt = _a[0], shortMaxFt = _a[1];
+    var _b = [0, 8], shortMaxIn = _b[1];
+    var _c = [5, 6], tallMinFt = _c[0], tallMaxFt = _c[1];
+    var _d = [9, 11], tallMinIn = _d[0], tallMaxIn = _d[1];
+    var sFt = utils_1.randn(shortMaxFt + 1, shortMinFt);
+    var tFt = utils_1.randn(tallMaxFt + 1, tallMinFt);
+    if (h === 'short' && sFt === shortMinFt) {
+        return sFt + "." + utils_1.randn(tallMaxIn + 1);
+    }
+    if (h === 'short' && sFt === shortMaxFt) {
+        return sFt + "." + utils_1.randn(shortMaxIn + 1);
+    }
+    if (h === 'tall' && tFt === tallMinFt) {
+        return tFt + "." + utils_1.randn(tallMaxIn + 1, tallMinIn);
+    }
+    if (h === 'tall' && tFt === tallMaxFt) {
+        return tFt + "." + utils_1.randn(tallMaxIn + 1);
+    }
+    return tFt + "." + utils_1.randn(tallMaxIn + 1);
+}
+function usAddress() {
+    var si = utils_1.randn(states_json_1["default"].length);
+    var state = states_json_1["default"][si];
+    var cityIndex = utils_1.randn(majorCities_json_1["default"].length);
+    var city = majorCities_json_1["default"][cityIndex].split(',')[0];
+    return {
+        city: city,
+        state: state.name,
+        stateAbbrev: state.abbreviation,
+        zipCode: usZipcode(),
+        countryAbbrev: 'U.S',
+        country: 'United States of America'
+    };
+}
+exports.usAddress = usAddress;
+function usPhoneNumber() {
+    var areaCode = "" + utils_1.randn(10, 2) + utils_1.randn(9) + utils_1.randn(9);
+    var subNumber = "" + utils_1.randn(10, 2);
+    for (var i = 0; i < 6; i++)
+        subNumber += i;
+    var number = {
+        subNumber: subNumber,
+        country: 'us',
+        countryCode: '+1',
+        cityCode: areaCode,
+        number: "" + areaCode + subNumber,
+        withAreaCode: "+1" + areaCode + subNumber
+    };
+    return number;
+}
+exports.usPhoneNumber = usPhoneNumber;
+function usPerson(opts) {
+    var _a = personBySex(opts.sex), name = _a.name, middlename = _a.middlename, middleInitial = _a.middleInitial, lastname = _a.lastname, initials = _a.initials, email = _a.email, title = _a.title, suffixTitle = _a.suffixTitle;
+    return {
+        name: name,
+        middlename: middlename,
+        middleInitial: middleInitial,
+        lastname: lastname,
+        initials: initials,
+        email: email,
+        title: title,
+        suffixTitle: suffixTitle,
+        academicTitle: globals_1.titles.academic[utils_1.randn(globals_1.titles.academic.length)],
+        sex: opts.sex,
+        age: personAge(opts.age),
+        height: usPersonHeight(opts.height),
+        nationality: 'US'
+    };
+}
+exports.usPerson = usPerson;
 
 
 /***/ }),
@@ -257,10 +426,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var utils_1 = __webpack_require__(/*! ./utils */ "./lib/utils.ts");
 var randi_1 = __importDefault(__webpack_require__(/*! @verdebydesign/randi */ "./node_modules/@verdebydesign/randi/src/randi.js"));
+var validators_1 = __webpack_require__(/*! ./validators */ "./lib/validators.ts");
+var helpers_1 = __webpack_require__(/*! ./helpers */ "./lib/helpers.ts");
 var globals_1 = __webpack_require__(/*! ./globals */ "./lib/globals.ts");
-var menNames_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/menNames.json */ "./data/locale/us/menNames.json"));
-var states_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/states.json */ "./data/locale/us/states.json"));
-var majorCities_json_1 = __importDefault(__webpack_require__(/*! ../data/locale/us/majorCities.json */ "./data/locale/us/majorCities.json"));
 var forLorem_json_1 = __importDefault(__webpack_require__(/*! ../data/forLorem.json */ "./data/forLorem.json"));
 function buildPicsumUrl(w, h, o) {
     var id = utils_1.randn(globals_1.PicsumDefault.ni);
@@ -334,129 +502,34 @@ function fetchPicsum(w, h, o) {
         });
     });
 }
-function usZipcode() {
-    var zipcode = '';
-    for (var i = 0; i < 5; i++)
-        zipcode += utils_1.randn(9);
-    return zipcode;
-}
-function usAddress() {
-    var si = utils_1.randn(states_json_1["default"].length);
-    var state = states_json_1["default"][si];
-    var cityIndex = utils_1.randn(majorCities_json_1["default"].length);
-    var city = majorCities_json_1["default"][cityIndex].split(',')[0];
-    return {
-        city: city,
-        state: state.name,
-        stateAbbrev: state.abbreviation,
-        zipCode: usZipcode(),
-        countryAbbrev: 'U.S',
-        country: 'United States of America'
-    };
-}
-function usPhoneNumber() {
-    var areaCode = "" + utils_1.randn(10, 2) + utils_1.randn(9) + utils_1.randn(9);
-    var subNumber = "" + utils_1.randn(10, 2);
-    for (var i = 0; i < 6; i++)
-        subNumber += i;
-    var number = {
-        subNumber: subNumber,
-        country: 'us',
-        countryCode: '+1',
-        cityCode: areaCode,
-        number: "" + areaCode + subNumber,
-        withAreaCode: "+1" + areaCode + subNumber
-    };
-    return number;
-}
-function usPersonHeight(h) {
-    var _a = [4, 5], shortMinFt = _a[0], shortMaxFt = _a[1];
-    var _b = [0, 8], shortMaxIn = _b[1];
-    var _c = [5, 6], tallMinFt = _c[0], tallMaxFt = _c[1];
-    var _d = [9, 11], tallMinIn = _d[0], tallMaxIn = _d[1];
-    var sFt = utils_1.randn(shortMaxFt + 1, shortMinFt);
-    var tFt = utils_1.randn(tallMaxFt + 1, tallMinFt);
-    switch (true) {
-        case h === 'short':
-        case sFt === shortMinFt:
-            return sFt + "." + utils_1.randn(tallMaxIn + 1);
-        case h === 'short':
-        case sFt === shortMaxFt:
-            return sFt + "." + utils_1.randn(shortMaxIn + 1);
-        case h === 'tall':
-        case tFt === shortMaxFt:
-            return tFt + "." + utils_1.randn(tallMaxIn + 1, tallMinIn);
-        case h === 'tall':
-        case tFt === tallMaxFt:
-            return tFt + "." + utils_1.randn(tallMaxIn + 1);
-        default: return tFt + "." + utils_1.randn(tallMaxIn + 1, tallMinIn);
+function buildPhoneNumber(locale) {
+    switch (locale) {
+        case 'en-US': return helpers_1.usPhoneNumber();
+        default: return helpers_1.usPhoneNumber();
     }
 }
-function personAge(age) {
-    switch (age) {
-        case '20s': return utils_1.randn(30, 20);
-        case '30s': return utils_1.randn(40, 30);
-        case '40s': return utils_1.randn(50, 40);
-        case 'young': return utils_1.randn(51, 13);
-        case 'old': return utils_1.randn(100, 51);
-        default: return utils_1.randn(99, 13);
+function buildAddress(locale) {
+    switch (locale) {
+        case 'en-US': return helpers_1.usAddress();
+        default: return helpers_1.usAddress();
     }
 }
-function usPerson(opts) {
-    var ni = utils_1.randn(menNames_json_1["default"].length);
-    var mi = utils_1.randn(menNames_json_1["default"].length);
-    var si = utils_1.randn(menNames_json_1["default"].length);
-    var ti = utils_1.randn(globals_1.titles.prefixTitle.length);
-    var sfi = utils_1.randn(globals_1.titles.suffixTitle.length);
-    var name = menNames_json_1["default"][ni];
-    var middlename = menNames_json_1["default"][mi];
-    var middleInitial = middlename.charAt(0);
-    var lastname = menNames_json_1["default"][si];
-    var eprovider = globals_1.emailProviders[utils_1.randn(globals_1.emailProviders.length)];
-    var initials = name.charAt(0) + "." + lastname.charAt(0);
-    var email = name.toLowerCase() + "." + lastname.toLowerCase() + "@" + eprovider;
-    return {
-        name: name,
-        middlename: middlename,
-        middleInitial: middleInitial,
-        lastname: lastname,
-        initials: initials,
-        email: email,
-        academicTitle: globals_1.titles.academic[utils_1.randn(globals_1.titles.academic.length)],
-        sex: opts.person.sex,
-        age: personAge(opts.person.age),
-        height: usPersonHeight(opts.person.height),
-        nationality: opts.locale,
-        title: globals_1.titles.prefixTitle[ti],
-        suffixTitle: globals_1.titles.suffixTitle[sfi]
-    };
-}
-function buildPhoneNumber(opts) {
-    switch (opts.locale) {
-        case 'en-US': return usPhoneNumber();
-        default: return usPhoneNumber();
+function buildPerson(locale, opts) {
+    if (validators_1.validatePersonOpts(opts.person)) {
+        switch (locale) {
+            case 'en-US': return helpers_1.usPerson(opts.person);
+        }
     }
-}
-function buildAddress(opts) {
-    switch (opts.locale) {
-        case 'en-US': return usAddress();
-        default: return usAddress();
-    }
-}
-function buildPerson(opts) {
-    switch (opts.locale) {
-        case 'en-US': return usPerson(opts);
-        default: return usPerson(globals_1.defaultOptions);
-    }
+    return;
 }
 function mock(options) {
-    var definedOptions = options || globals_1.defaultOptions;
-    var locale = definedOptions.locale;
-    if (globals_1.locales[locale]) {
+    var definedOpts = validators_1.validateOptions(globals_1.defaultOptions, options);
+    if (definedOpts && globals_1.locales[definedOpts.locale]) {
+        var definedLocale = globals_1.locales[definedOpts.locale];
         return {
-            person: buildPerson(definedOptions),
-            phoneNumber: buildPhoneNumber(definedOptions),
-            address: buildAddress(definedOptions)
+            person: buildPerson(definedLocale, definedOpts),
+            phoneNumber: buildPhoneNumber(definedLocale),
+            address: buildAddress(definedLocale)
         };
     }
     return;
@@ -507,6 +580,61 @@ function randn(max, min) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 exports.randn = randn;
+
+
+/***/ }),
+
+/***/ "./lib/validators.ts":
+/*!***************************!*\
+  !*** ./lib/validators.ts ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var globals_1 = __webpack_require__(/*! ./globals */ "./lib/globals.ts");
+exports.isSet = function (k) { return k !== undefined; };
+function validateOptions(defaultOptions, opts) {
+    if (!opts) {
+        return defaultOptions;
+    }
+    if (!exports.isSet(opts.locale) && !exports.isSet(opts.person)) {
+        opts.person = defaultOptions.person;
+        opts.locale = defaultOptions.locale;
+        return opts;
+    }
+    if (exports.isSet(opts.person) && !exports.isSet(opts.locale)) {
+        opts.locale = defaultOptions.locale;
+        return opts;
+    }
+    if (exports.isSet(opts.locale) && !exports.isSet(opts.person)) {
+        opts.person = defaultOptions.person;
+        return opts;
+    }
+    if (exports.isSet(opts)) {
+        return opts;
+    }
+    return;
+}
+exports.validateOptions = validateOptions;
+function validatePersonOpts(opts) {
+    var definedSex = exports.isSet(opts.sex)
+        && globals_1.sexes.indexOf(opts.sex) !== -1
+        && opts.sex;
+    var definedAge = exports.isSet(opts.age)
+        && globals_1.ages.indexOf(opts.age) !== -1
+        && opts.age;
+    var definedHeight = exports.isSet(opts.height)
+        && globals_1.heights.indexOf(opts.height) !== -1
+        && opts.height;
+    if (definedSex && definedAge && definedHeight) {
+        return true;
+    }
+    return false;
+}
+exports.validatePersonOpts = validatePersonOpts;
 
 
 /***/ }),

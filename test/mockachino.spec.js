@@ -30,6 +30,7 @@ describe('mockachino mock tests', () => {
 	it('should test mock with no options', () => {
 		expect(mockachino.mock).to.be.a('function');
 		expect(mockachino.mock()).has.keys(mockKeys);
+		expect(mockachino.mock({})).has.keys(mockKeys);
 	});
 
 	it('should test mock with all config options', () => {
@@ -88,7 +89,26 @@ describe('mockachino mock tests', () => {
 			}
 		};
 
-		expect(mockachino.mock(opts)).to.be.undefined;
+		// should mock default locale
+		expect(mockachino.mock(opts)).has.keys(mockKeys);
+		// person should be undefined
+		expect(mockachino.mock(opts).person).to.be.undefined;
+	});
+
+	it('should test mock with correct generated data by config', () => {
+		const opts = {
+			locale: 'us',
+			person: {
+				sex: 'woman',
+				height: 'tall',
+				age: 'young'
+			}
+		};
+
+		expect(mockachino.mock(opts).person.sex).to.equal('woman');
+		expect(mockachino.mock(opts).person.age).to.be.lessThan(18);
+		const ft = mockachino.mock(opts).person.height.split('.')[0];
+		expect(Number(ft)).to.not.be.lessThan(5);
 	});
 
 	it('should test mock with no person in config options', () => {
@@ -97,9 +117,11 @@ describe('mockachino mock tests', () => {
 		};
 
 		expect(mockachino.mock(opts)).has.keys(mockKeys);
+		// if no person config is given, person should fallacl to default
+		expect(mockachino.mock(opts).person).to.not.be.undefined;
 	});
 
-	it('should test mock with non exisiting locale', () => {
+	it('should test mock with non existing locale', () => {
 		const opts = {
 			locale: 'unkown'
 		};
@@ -107,7 +129,7 @@ describe('mockachino mock tests', () => {
 		expect(mockachino.mock(opts)).to.be.undefined;
 	});
 
-	it('should test mock with nperson with undefined person config options', () => {
+	it('should test mock with undefined person config options', () => {
 		const opts = {
 			locale: 'us',
 			person: {
@@ -117,7 +139,33 @@ describe('mockachino mock tests', () => {
 			}
 		};
 
+		// all undefined values will fallback to default values
 		expect(mockachino.mock(opts)).has.keys(mockKeys);
+		// undefined person object
+		expect(mockachino.mock(opts).person).to.be.undefined;
+	});
+
+	it('should cover all possible ages', () => {
+		let opts = {
+			locale: 'us',
+			person: {
+				sex: 'man',
+				height: 'short',
+				age: '30s'
+			}
+		};
+
+		expect(mockachino.mock(opts).person.age).to.not.be.lessThan(30);
+		opts.person.age = 'youngAdult';
+		expect(mockachino.mock(opts).person.age).to.not.be.lessThan(18);
+		opts.person.age = 'mid20s';
+		expect(mockachino.mock(opts).person.age).to.not.be.lessThan(25);
+		opts.person.age = 'mid40s';
+		expect(mockachino.mock(opts).person.age).to.not.be.lessThan(35);
+		opts.person.age = 'middleAged';
+		expect(mockachino.mock(opts).person.age).to.not.be.lessThan(40);
+		opts.person.age = 'old';
+		expect(mockachino.mock(opts).person.age).to.not.be.lessThan(61);
 	});
 });
 
