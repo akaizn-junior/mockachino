@@ -71,10 +71,10 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 | --- | --- |
 | Locale | Defines the locale the data should be based on. Defaults to 'us', more locales to come |
 | Person | Mock a person, define the person sex, age, and height |
-|--|--|
+|||
 |sex| woman, man|
 |height| tall, short|
-|age| young, old, 20s, 30s|
+|age| young, old, 20s, 30s, 40s, mid20s, mid40s, middleAged, youngAdult |
 
 ## ```mockachino.random``` usage
 
