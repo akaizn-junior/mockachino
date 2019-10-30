@@ -165,9 +165,10 @@ function buildAddress(locale: string): UsAddress {
  * @ignore
  */
 function buildPerson(locale: string, opts: Options): Person | undefined {
-	if (validatePersonOpts(opts.person)) {
+	const definedPerson = validatePersonOpts(opts.person);
+	if (definedPerson) {
 		switch (locale) {
-		case 'en-US': return usPerson(opts.person);
+		case 'en-US': return usPerson(definedPerson);
 		}
 	}
 

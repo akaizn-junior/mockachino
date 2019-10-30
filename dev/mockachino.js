@@ -515,9 +515,10 @@ function buildAddress(locale) {
     }
 }
 function buildPerson(locale, opts) {
-    if (validators_1.validatePersonOpts(opts.person)) {
+    var definedPerson = validators_1.validatePersonOpts(opts.person);
+    if (definedPerson) {
         switch (locale) {
-            case 'en-US': return helpers_1.usPerson(opts.person);
+            case 'en-US': return helpers_1.usPerson(definedPerson);
         }
     }
     return;
@@ -630,9 +631,13 @@ function validatePersonOpts(opts) {
         && globals_1.heights.indexOf(opts.height) !== -1
         && opts.height;
     if (definedSex && definedAge && definedHeight) {
-        return true;
+        return {
+            age: definedAge,
+            height: definedHeight,
+            sex: definedSex
+        };
     }
-    return false;
+    return;
 }
 exports.validatePersonOpts = validatePersonOpts;
 

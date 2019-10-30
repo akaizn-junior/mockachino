@@ -49,7 +49,7 @@ export function validateOptions(defaultOptions: Options, opts?: Options): Option
  * @param opts Person config options
  * @ignore
  */
-export function validatePersonOpts(opts: PersonOpts): boolean {
+export function validatePersonOpts(opts: PersonOpts): PersonOpts | undefined {
 	const definedSex = isSet(opts.sex)
 		&& sexes.indexOf(opts.sex) !== -1
 		&& opts.sex;
@@ -63,8 +63,12 @@ export function validatePersonOpts(opts: PersonOpts): boolean {
 		&& opts.height;
 
 	if (definedSex && definedAge && definedHeight) {
-		return true;
+		return {
+			age: definedAge,
+			height: definedHeight,
+			sex: definedSex
+		};
 	}
 
-	return false;
+	return;
 }
