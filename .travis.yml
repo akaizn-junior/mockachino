@@ -23,8 +23,7 @@ jobs:
           - npm ci
           - npm run test:setup
           - npm run test
-
-after_success: npm run coverage
+          - npm run coverage
 
 notifications:
     email:
