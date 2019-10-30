@@ -10,21 +10,22 @@ stages:
     - lint
     - test
 
+before_install:
+    - npm config set '//npm.pkg.github.com/:_authToken' "${GPR_TOK}"
+    - npm ci
+
 jobs:
     include:
       - stage: lint
         name: "Lint codebase"
         script:
-          - npm ci
           - npm run lint
       - stage: test
         name: "Unit and coverage tests"
         script:
-          - npm ci
           - npm run test:setup
           - npm run test
-
-after_success: npm run coverage
+          - npm run coverage
 
 notifications:
     email:

@@ -7,10 +7,11 @@ export const emailProviders: string[] = [
 	'live.com'
 ];
 
-export const titles: Record<string, string[]> = {
-	prefixTitle: ['Mr.', 'Mrs.', 'Ms.'],
-	suffixTitle: ['Sr.', 'Jr.', '3rd', 'The 3rd'],
-	academic: ['Dr.', 'Prof.']
+export const titles = {
+	menTitles: ['Mr.'],
+	womenTitles: ['Miss', 'Mrs.', 'Ms.'],
+	academic: ['Dr.', 'Prof.'],
+	suffixTitle: ['Sr.', 'Jr.', '3rd', 'The 3rd']
 };
 
 export const locales: Record<string, string> = {
@@ -50,3 +51,10 @@ export const fetchInit: RequestInit = {
 	method: 'GET',
 	cache: 'default'
 };
+
+export const sexes = ['man', 'woman'];
+export const ages = [
+	'20s', '30s', '40s', 'young', 'old', 'youngAdult',
+	'mid20s', 'mid40s', 'middleAged'
+];
+export const heights = ['tall', 'short'];

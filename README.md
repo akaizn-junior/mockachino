@@ -71,10 +71,10 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 | --- | --- |
 | Locale | Defines the locale the data should be based on. Defaults to 'us', more locales to come |
 | Person | Mock a person, define the person sex, age, and height |
-|--|--|
+|||
 |sex| woman, man|
 |height| tall, short|
-|age| young, old, 20s, 30s|
+|age| young, old, 20s, 30s, 40s, mid20s, mid40s, middleAged, youngAdult |
 
 ## ```mockachino.random``` usage
 
@@ -105,9 +105,8 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 
 ## Contribute
 
-* Follow CONTRIBUTING.md
-
-* Rules of Conduct [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](./CODE_OF_CONDUCT.md)
+- Follow CONTRIBUTING.md
+- Rules of Conduct [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](./CODE_OF_CONDUCT.md)
 
 ## Licence
 

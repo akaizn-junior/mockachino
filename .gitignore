@@ -3,3 +3,4 @@ cypress
 .nyc_output
 coverage
 *tmp
+.vscode
