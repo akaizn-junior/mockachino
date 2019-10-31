@@ -32,6 +32,10 @@
 		"cache": true,
 		"all": false
 	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org",
+		"tag": "latest"
+	},
 	"keywords": [
 		"mock",
 		"fake",
