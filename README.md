@@ -93,7 +93,7 @@ Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname:
 
 [![Build Status](https://travis-ci.org/verdebydesign/mockachino.svg?branch=develop)](https://travis-ci.org/verdebydesign/mockachino)
 
-[![Coverage Status](https://coveralls.io/repos/github/verdebydesign/mockachino/badge.svg?branch=develop)](https://coveralls.io/github/verdebydesign/mockachino?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/verdebydesign/mockachino/badge.svg)](https://coveralls.io/github/verdebydesign/mockachino)
 
 ## Shout outs
 
