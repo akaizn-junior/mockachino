@@ -10,46 +10,43 @@
 
 Generate mock data for your apps, take a sip and relax!
 
-    * People
-    * Addresses
-    * Phone Numbers
-    * Jobs
-    * Sentences
-    * Paragraphs
-    * Texts
-    * Cities
-    * & more
+- People
+- Addresses
+- Phone Numbers
+- Jobs
+- Sentences
+- Paragraphs
+- Texts
+- Cities
+- & more
 
-    Based on US data; other countries to come.
+Based on US data; other countries to come.
 
-### [Documentation](https://akaizn-junior.github.io/mockachino/)
+## Documentation
 
-## How to use
+- Read the docs [here](https://akaizn-junior.github.io/mockachino/)
 
-### Script tag
+## Usage
+
+### Browser
 
 ```js
 <script src="mockachino.min.js"></script>
 <script>
     let mocka = new Mockachino().mock();
-    //show mocked data in the console
+    // show mocked data in the console
     console.log(mocka.person);
     /*
-    e.g: Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname: "Adams", initials: "V.A", email: "valentina.adams@hotmail.com", academicTitle: "Prof.", sex: "woman", age: 23, height: "4.1", … }
+    Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname: "Adams", initials: "V.A", email: "valentina.adams@hotmail.com", academicTitle:  "Prof.", sex: "woman", age: 23, height: "4.1", … }
     */
 </script>
 ```
 
-### npm
+### Node
 
-```bash
-npm i --save-dev mockachino
-```
-
-### import or require
+```npm i -D mockachino```
 
 ```js
-//for import remember to transpile your code with babel
 const mocka = require('Mockachino');
 
 let mocka = new Mockachino({
@@ -63,7 +60,7 @@ let mocka = new Mockachino({
 
 console.log(mocka.mock().person);
 /*
-e.g: Object { name: "Elias", middlename: "Ethan", middleInitial: "E.", lastname: "Coleman", initials: "E.C", email: "elias.coleman@hotmail.com", academicTitle: "Dr.", sex: "man", age: 25, height: "5.10", … }
+Object { name: "Elias", middlename: "Ethan", middleInitial: "E.", lastname: "Coleman", initials: "E.C", email: "elias.coleman@hotmail.com", academicTitle: "Dr.", sex: "man", age: 25, height: "5.10", … }
 */
 ```
 

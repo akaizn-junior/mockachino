@@ -21,9 +21,8 @@
     "mocker"
   ],
   "scripts": {
-    "test:unit": "mocha 'src/unit.spec.js' --require @babel/register",
-    "test:cov": "nyc npm run test:unit",
-    "test": "npm run lint && npm run test:cov",
+    "test:u": "mocha 'src/unit.spec.js' --require @babel/register",
+    "test": "nyc npm run test:unit",
     "lint": "eslint .",
     "compile": "rm -R dist; export NODE_ENV='production'; webpack --progress",
     "watch": "rm -R dev; webpack --watch",

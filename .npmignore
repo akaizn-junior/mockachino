@@ -1,4 +1,3 @@
-#dont need this in the npm package
 node_modules
 cypress
 .nyc_output
