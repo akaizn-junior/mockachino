@@ -19,3 +19,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - travis ci configurations a bit
 - cleaned up the code for better readability
+
+## [1.0.0] - 2019-10-27
+
+### Added
+
+- rewriting and improving codebase
+- overloaded 'random' method for random images using Picsum
+- random placeholder titles using Randi
+- random numbers
+- typescript, using types with mockachino makes a lot more sense for organization and improves building process
+
+### Changed
+
+- codebase from javascript to typescript

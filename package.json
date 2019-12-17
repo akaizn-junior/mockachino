@@ -1,58 +1,77 @@
 {
-  "name": "mockachino",
-  "version": "0.2.3",
-  "description": "Generate mock data for your apps. Take a sip and relax",
-  "main": "src/Mockachino.js",
-  "author": {
-    "name": "Simao Nziaka",
-    "email": "sdnziaka@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/akaizn-junior/mockachino"
-  },
-  "keywords": [
-    "mock",
-    "fake",
-    "data",
-    "seed",
-    "mockachino",
-    "faker",
-    "mocker"
-  ],
-  "scripts": {
-    "test:u": "mocha 'src/unit.spec.js' --require @babel/register",
-    "test": "nyc npm run test:unit",
-    "lint": "eslint .",
-    "compile": "rm -R dist; export NODE_ENV='production'; webpack --progress",
-    "watch": "rm -R dev; webpack --watch",
-    "build": "npm run lint && npm run test:cov && npm run make:js",
-    "serveBase": "webpack-dev-server",
-    "docs": "jsdoc src/Mockachino.js -c jsdoc.json --verbose && cp logo.gif docs",
-    "serve": "webpack-dev-server -w",
-    "pack": "./test_package.sh",
-    "size": "npx size-limit"
-  },
-  "size-limit": [
-    {
-      "path": "src/Mockachino.js",
-      "limit": "7 KB"
-    }
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/register": "^7.4.0",
-    "babel-preset-env": "^1.7.0",
-    "chai": "^4.2.0",
-    "dotenv": "^7.0.0",
-    "eslint": "^5.15.3",
-    "jsdoc": "^3.5.5",
-    "minami": "^1.2.3",
-    "mocha": "^6.0.2",
-    "sinon": "^7.2.7",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
-  }
+	"name": "mockachino",
+	"version": "1.0.0",
+	"description": "Generate mock data for your apps. Take a sip and relax",
+	"main": "lib/mockachino",
+	"scripts": {
+		"test:setup": "tsc --build test/tsconfig.test.json",
+		"lint": "eslint . --ext=ts",
+		"test": "nyc mocha test/*.spec.js",
+		"coverage": "nyc report --reporter=text-lcov | coveralls",
+		"watch": "export NODE_ENV=development; webpack --watch --progress",
+		"doc": "typedoc lib/ && cp logo.gif docs",
+		"compile": "webpack --progress"
+	},
+	"nyc": {
+		"check-coverage": true,
+		"per-file": false,
+		"statements": 70,
+		"branches": 60,
+		"functions": 80,
+		"lines": 75,
+		"reporter": [
+			"html",
+			"text-summary"
+		],
+		"exclude": [
+			"**/*.spec.js"
+		],
+		"extension": [
+			".spec.js"
+		],
+		"cache": true,
+		"all": false
+	},
+	"keywords": [
+		"mock",
+		"fake",
+		"data",
+		"seed",
+		"mockachino",
+		"faker",
+		"mocker"
+	],
+	"directories": {
+		"test": "test",
+		"lib": "lib"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/verdebydesign/mockachino.git"
+	},
+	"author": "Simao Nziaka <sdnziaka@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/verdebydesign/mockachino/issues"
+	},
+	"homepage": "https://github.com/verdebydesign/mockachino#readme",
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^2.5.0",
+		"@typescript-eslint/parser": "^2.5.0",
+		"@verdebydesign/randi": "0.0.7",
+		"chai": "^4.2.0",
+		"coveralls": "^3.0.7",
+		"dotenv": "^8.2.0",
+		"eslint": "^6.6.0",
+		"jsdom": "^15.2.0",
+		"jsdom-global": "^3.0.2",
+		"mocha": "^6.2.2",
+		"nyc": "^14.1.1",
+		"ts-loader": "^6.2.1",
+		"typedoc": "^0.15.0",
+		"typescript": "^3.6.4",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.9"
+	},
+	"dependencies": {}
 }

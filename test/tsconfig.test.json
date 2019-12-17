@@ -1,0 +1,14 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"module": "commonjs",
+		"outDir": "tmp",
+		"sourceMap": false,
+		"lib": [
+			"es2018",
+			"dom"
+		]
+	},
+	"include": ["../lib/mockachino.ts"],
+	"exclude": ["node_modules"]
+}

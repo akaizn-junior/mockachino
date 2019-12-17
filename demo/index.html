@@ -1,58 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Demo: Mockachino</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Demo</title>
 </head>
+
 <body>
-    <header>
-        <h1>Mockachino</h1>
-        <p>Generate mock data for your apps. Take a sip and relax</p>
-    </header>
+	<header>
+		<h1>Mockachino</h1>
+		<p>Generate mock data for your apps. Take a sip and relax</p>
+	</header>
+	<main>
+		<div id="random-image-wrapper">
+			<img id="random-image" alt="Random image" title="Random image" src="" />
+		</div>
+		<div id="fake-person">
+			<h2>Fake Person</h2>
+		</div>
+	</main>
+	<!-- <script src="../dist/umd/mockachino.min.js"></script> -->
+	<script src="../dev/mockachino.js"></script>
+	<script>
+		let mocked = Mockachino.mock({
+			locale: 'us',
+			person: {
+				sex: 'man',
+				height: 'tall',
+				age: '20s'
+			}
+		});
 
-    <main>
-        <div id="fake-person">
-            <h2>Fake Person</h2>
-        </div>
-    </main>
+		console.log(mocked);
+		// mock without options
+		console.log(Mockachino.mock().person);
+		console.log(Mockachino.random(12, 8).number);
+		console.log(Mockachino.random('_').title);
+		console.log(Mockachino.lorem().sentence);
+		console.log(Mockachino.lorem().paragraph);
+		console.log(Mockachino.lorem(' ').text(10));
 
-    <script src="../dist/umd/mockachino.min.js"></script>
-    <script>
-        let mocka = new Mockachino({
-            locale: 'us',
-            person: {
-                sex: 'man',
-                height: 'tall',
-                age: '20s'
-            }
-        }).mock();
+		const getRandomImage = async function () {
+			let randomImageUrl = Mockachino.random(500, 500, { grayscale: true, blur: false, ext: 'jpeg' }).imageUrl;
+			let data = await fetch(randomImageUrl.data, { method: 'GET', cache: 'default' });
+			let info = await fetch(randomImageUrl.info, { method: 'GET', cache: 'default' });
 
-        //mocka.mock() generates new data everytime is called
-        //save mocka.mock() in a variable to persist the data
-        console.log(mocka.person);
-        //mock without options
-        console.log((new Mockachino()).mock().person);
+			return { data, info: await info.json() };
+		}
 
-        //fp - fake eperson
-        let fpElem = document.getElementById('fake-person');
-        let fpDetails = document.createElement('ul');
+		getRandomImage()
+			.then(result => {
+				let randImage = document.getElementById('random-image');
+				randImage.src = result.data.url;
+				randImage.title = result.info.author;
+				fpElem.appendChild(randImage);
+			})
+			.catch(console.error);
 
-        fpDetails.innerHTML = `
-            <li>Title: <i>${mocka.person.title}</i></li>
-            <li>Name: <i>${mocka.person.name}</i></li>
-            <li>Middlename: <i>${mocka.person.middlename}</i></li>
-            <li>Lastname: <i>${mocka.person.lastname}</i></li>
-            <li>Initials: <i>${mocka.person.initials}</i></li>
-            <li>Email: <i>${mocka.person.email}</i></li>
+		// const getRandomImageBlob = async function () {
+		// 	let { blob, info } = await Mockachino.random(600, 500).imageBlob;
+		// 	return { blob: await blob, info };
+		// }
+
+		// getRandomImageBlob()
+		// 	.then(res => {
+		// 		console.log(res);
+		// 		let src = URL.createObjectURL(res.blob);
+		// 		let randImage = document.getElementById('random-image');
+		// 		randImage.src = src;
+		// 		if (res.info) { randImage.title = res.info.author; }
+		// 		fpElem.appendChild(randImage);
+		// 	})
+		// 	.catch(console.error);
+
+		// fp - fake eperson
+		let fpElem = document.getElementById('fake-person');
+		let fpDetails = document.createElement('ul');
+
+		fpDetails.innerHTML = `
+            <li>Title: <i>${mocked.person.title}</i></li>
+            <li>Name: <i>${mocked.person.name}</i></li>
+            <li>Middlename: <i>${mocked.person.middlename}</i></li>
+            <li>Lastname: <i>${mocked.person.lastname}</i></li>
+            <li>Initials: <i>${mocked.person.initials}</i></li>
+            <li>Email: <i>${mocked.person.email}</i></li>
         `;
 
-        let rText = document.createElement('div');
-        rText.innerHTML = `${mocka.text(4)}`;
+		// let rText = document.createElement('div');
+		// rText.innerHTML = `${mocked.text(4)}`;
 
-        fpElem.appendChild(rText);
-        fpElem.appendChild(fpDetails);
-    </script>
+		// fpElem.appendChild(rText);
+		fpElem.appendChild(fpDetails);
+	</script>
 </body>
+
 </html>

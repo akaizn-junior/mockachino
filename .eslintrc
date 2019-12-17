@@ -3,14 +3,19 @@
         "browser": true,
         "node": true,
         "es6": true
-    },
+	},
+	"parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+	"extends": [
+		"plugin:@typescript-eslint/recommended" // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+	],
     "parserOptions": {
+		"ecmaVersion": 2019,
         "sourceType": "module"
     },
     "rules": {
-        "comma-dangle": 0,
+        "comma-dangle": 2,
         "no-cond-assign": 2,
-        "no-console": 0,
+        "no-console": 2,
         "no-constant-condition": 1,
         "no-control-regex": 2,
         "no-debugger": 2,
@@ -149,17 +154,17 @@
         "id-blacklist": 0,
         "id-length": 0,
         "id-match": 0,
-        "indent": ["error", 4],
+        "indent": ["error", "tab"],
         "jsx-quotes": 0,
         "key-spacing": 2,
         "keyword-spacing": [2, {
             "before": true,
             "after": true,
             "overrides": {
-                "if": {"after": false},
-                "for": {"after": false},
-                "while": {"after": false},
-                "catch": {"after": false}
+                "if": {"after": true},
+                "for": {"after": true},
+                "while": {"after": true},
+                "catch": {"after": true}
             }
         }],
         "linebreak-style": 2,

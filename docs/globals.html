@@ -63,179 +63,35 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#mockachino" id="mockachino" style="color: inherit; text-decoration: none;">
-					<h1>Mockachino</h1>
-				</a>
-				<ul>
-					<li>Faker</li>
-					<li>Mocker</li>
-					<li>Mocha?</li>
-					<li>Mochachino?!</li>
-				</ul>
-				<p><img src="./logo.gif" alt="Mockachino logo"></p>
-				<p>Generate mock data for your apps, take a sip and relax!</p>
-				<ul>
-					<li>People</li>
-					<li>Addresses</li>
-					<li>Phone Numbers</li>
-					<li>Jobs</li>
-					<li>Sentences</li>
-					<li>Paragraphs</li>
-					<li>Texts</li>
-					<li>Cities</li>
-					<li>Picsum Image URLs</li>
-					<li>Picsum Image Blobs</li>
-					<li>Placeholder titles</li>
-					<li>Random Numbers</li>
-					<li>&amp; more</li>
-				</ul>
-				<p>Based on US data; other countries to come.</p>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h2>Usage</h2>
-				</a>
-				<a href="#browser" id="browser" style="color: inherit; text-decoration: none;">
-					<h3>Browser</h3>
-				</a>
-				<pre><code class="language-js">&lt;script src=<span class="hljs-string">"mockachino.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-comment">// no options provided</span>
-    <span class="hljs-keyword">let</span> mocked = Mockachino.mock();
-    <span class="hljs-comment">// show mocked data in the console</span>
-    <span class="hljs-built_in">console</span>.log(mocked.phoneNumber);
-    <span class="hljs-comment">/* Object { cityCode: "468", country: "us", countryCode: "+1", number: "4687012345", subNumber: "7012345", withAreaCode: "+14687012345" }
-    */</span>
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
-				<a href="#node" id="node" style="color: inherit; text-decoration: none;">
-					<h3>Node</h3>
-				</a>
-				<p><code>npm i -D mockachino</code></p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> mockachino = <span class="hljs-built_in">require</span>(<span class="hljs-string">'Mockachino'</span>);
-
-<span class="hljs-comment">// with no options provided</span>
-<span class="hljs-keyword">let</span> mocked = Mockachino.mock({
-    <span class="hljs-attr">locale</span>: <span class="hljs-string">'us'</span>,
-    <span class="hljs-attr">person</span>: {
-        <span class="hljs-attr">sex</span>: <span class="hljs-string">'man'</span>,
-        <span class="hljs-attr">height</span>: <span class="hljs-string">'short'</span>,
-        <span class="hljs-attr">age</span>: <span class="hljs-string">'20s'</span>
-    }
-});
-
-<span class="hljs-built_in">console</span>.log(mocked.person);
-
-<span class="hljs-comment">/*
-Object { name: "Valentina", middlename: "Nevaeh", middleInitial: "N.", lastname: "Adams", initials: "V.A", email: "valentina.adams@hotmail.com", academicTitle:  "Prof.", sex: "woman", age: 23, height: "4.5", … }
-*/</span></code></pre>
-				<a href="#codemockachinomockcode-options" id="codemockachinomockcode-options" style="color: inherit; text-decoration: none;">
-					<h2><code>mockachino.mock</code> options</h2>
-				</a>
-				<table>
-					<thead>
-						<tr>
-							<th>Option</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>Locale</td>
-							<td>Defines the locale the data should be based on. Defaults to &#39;us&#39;, more locales to come</td>
-						</tr>
-						<tr>
-							<td>Person</td>
-							<td>Mock a person, define the person sex, age, and height</td>
-						</tr>
-						<tr>
-							<td>--</td>
-							<td>--</td>
-						</tr>
-						<tr>
-							<td>sex</td>
-							<td>woman, man</td>
-						</tr>
-						<tr>
-							<td>height</td>
-							<td>tall, short</td>
-						</tr>
-						<tr>
-							<td>age</td>
-							<td>young, old, 20s, 30s</td>
-						</tr>
-				</tbody></table>
-				<a href="#codemockachinorandomcode-usage" id="codemockachinorandomcode-usage" style="color: inherit; text-decoration: none;">
-					<h2><code>mockachino.random</code> usage</h2>
-				</a>
-				<table>
-					<thead>
-						<tr>
-							<th>Data</th>
-							<th>Description</th>
-							<th>Usage</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>Number</td>
-							<td>Just a random number</td>
-							<td><code>Mockachino.random(200, 15).number; // A random number from 15 to 199</code></td>
-						</tr>
-						<tr>
-							<td>Title</td>
-							<td>A random placeholder title</td>
-							<td><code>Mockachino.random(&#39;-&#39;).title; // A-random-title separated by &#39;-&#39;</code></td>
-						</tr>
-						<tr>
-							<td>ImageUrl</td>
-							<td>A random image URL from Picsum</td>
-							<td><code>Mockachino.random(350, 300).imageUrl; // A random image URL of 350x300 size from Picsum</code></td>
-						</tr>
-						<tr>
-							<td>ImageBlob</td>
-							<td>A random image blob from Picsum</td>
-							<td><code>Mockachino.random(400, 500).imageBlob; // A random image Blob of 400x500 size from Picsum</code></td>
-						</tr>
-				</tbody></table>
-				<a href="#read-more" id="read-more" style="color: inherit; text-decoration: none;">
-					<h2>Read more</h2>
-				</a>
-				<ul>
-					<li><a href="https://verdebydesign.github.io/mockachino/">Documentation</a></li>
-				</ul>
-				<a href="#status" id="status" style="color: inherit; text-decoration: none;">
-					<h2>Status</h2>
-				</a>
-				<p><a href="https://travis-ci.org/verdebydesign/mockachino"><img src="https://travis-ci.org/verdebydesign/mockachino.svg?branch=develop" alt="Build Status"></a></p>
-				<p><a href="https://coveralls.io/github/verdebydesign/mockachino?branch=develop"><img src="https://coveralls.io/repos/github/verdebydesign/mockachino/badge.svg?branch=develop" alt="Coverage Status"></a></p>
-				<a href="#shout-outs" id="shout-outs" style="color: inherit; text-decoration: none;">
-					<h2>Shout outs</h2>
-				</a>
-				<ul>
-					<li><a href="https://www.npmjs.com/package/@verdebydesign/makever">makever</a> for making creating releases on github super easy.</li>
-					<li><a href="https://dmarby.se/">David Marby</a> and <a href="https://github.com/Nijikokun">Nijiko Yonskai</a> @ <a href="https://picsum.photos/">Picsum</a> for the amazing API for random images</li>
-					<li><a href="https://www110.lunapic.com/editor/">lunapic</a> for the amazing editor</li>
-					<li><a href="https://unsplash.com/photos/F_EfOSXh0sI?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">frankie on Unsplash</a> for the pic that allowed me to make the awesome logo.</li>
-					<li><a href="https://github.com/jsdoc3/jsdoc">jsdoc</a> and <a href="https://github.com/Nijikokun/minami">minami</a> for being awesome at generating awesome websites from simple comments.</li>
-				</ul>
-				<a href="#contribute" id="contribute" style="color: inherit; text-decoration: none;">
-					<h2>Contribute</h2>
-				</a>
-				<ul>
-					<li>Follow CONTRIBUTING.md</li>
-					<li>Rules of Conduct <a href="./CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg" alt="Contributor Covenant"></a></li>
-				</ul>
-				<a href="#licence" id="licence" style="color: inherit; text-decoration: none;">
-					<h2>Licence</h2>
-				</a>
-				<p>The MIT License <a href="https://opensource.org/licenses/MIT">MIT</a></p>
-				<a href="#author" id="author" style="color: inherit; text-decoration: none;">
-					<h2>Author</h2>
-				</a>
-				<p>&copy; 2018 <a href="https://simaonziaka.com">Simao Nziaka</a></p>
-			</div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>External modules</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/_data_forlorem_.html" class="tsd-kind-icon">"data/for<wbr>Lorem"</a></li>
+								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/_data_locale_us_majorcities_.html" class="tsd-kind-icon">"data/locale/us/major<wbr>Cities"</a></li>
+								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/_data_locale_us_mennames_.html" class="tsd-kind-icon">"data/locale/us/men<wbr>Names"</a></li>
+								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/_data_locale_us_states_.html" class="tsd-kind-icon">"data/locale/us/states"</a></li>
+								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/_data_locale_us_surnames_.html" class="tsd-kind-icon">"data/locale/us/surnames"</a></li>
+								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/_data_locale_us_womennames_.html" class="tsd-kind-icon">"data/locale/us/women<wbr>Names"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_lib_globals_.html" class="tsd-kind-icon">"lib/globals"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_lib_helpers_.html" class="tsd-kind-icon">"lib/helpers"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_lib_mockachino_.html" class="tsd-kind-icon">"lib/mockachino"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_lib_types_.html" class="tsd-kind-icon">"lib/types"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_lib_utils_.html" class="tsd-kind-icon">"lib/utils"</a></li>
+								<li class="tsd-kind-external-module"><a href="modules/_lib_validators_.html" class="tsd-kind-icon">"lib/validators"</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
+					<li class="globals current ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class="label tsd-is-external">

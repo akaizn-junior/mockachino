@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"strict": true,
+		"outDir": "dev",
+		"watch": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"allowJs": false,
+		"lib": [
+			"es2015",
+			"dom"
+		]
+	},
+	"typedocOptions": {
+        "mode": "modules",
+		"out": "docs"
+    }
+}
